@@ -208,6 +208,88 @@ footer p { margin-top:7px; line-height:1.9; }
 }
 .wa-float span { display:none; }
 
+
+
+
+.info-bar {
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeMove 18s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+}
+
+@keyframes marqueeMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.info-bar:hover .marquee {
+  animation-play-state: paused;
+}
+
+
+
+
+
+
+
+.countdown-box {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.cd-label {
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.countdown div {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,153,51,0.4);
+  border-radius: 10px;
+  padding: 10px 12px;
+  min-width: 60px;
+}
+
+.countdown span {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #FF9933;
+}
+
+.countdown small {
+  font-size: 0.65rem;
+  color: #ccc;
+  letter-spacing: 1px;
+}
+
+
 </style>
 </head>
 <body>
@@ -230,18 +312,46 @@ footer p { margin-top:7px; line-height:1.9; }
   <h1>Quality Items<br>at <span>Great Prices</span></h1>
   <div class="mannheim-badge">📍 Heinrich-Wittkamp-Str., 68176 Mannheim</div>
   <p class="hero-sub">Everything must go! Well-maintained items looking for a new home. Browse, select what you love, and WhatsApp us to arrange self-pickup.</p>
+
+
+  <div class="countdown-box">
+  <div class="cd-label">⏳ Sale Ends In</div>
+  <div class="countdown" id="countdown">
+    <div><span id="cd-days">0</span><small>Days</small></div>
+    <div><span id="cd-hours">0</span><small>Hours</small></div>
+    <div><span id="cd-mins">0</span><small>Min</small></div>
+    <div><span id="cd-secs">0</span><small>Sec</small></div>
+  </div>
+</div>
+
 </section>
+
+
 <!-- INFO BAR -->
 <div class="info-bar">
-  <span>🚗 Self-pickup only</span>
-  <span>🔒 Held only if prepaid</span>
-  <span>⚡ First come, first served</span>
-  <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
+  <div class="marquee">
+    <div class="marquee-content">
+      <span>🚗 Self-pickup only</span>
+      <span>🔒 Held only if prepaid</span>
+      <span>⚡ First come, first served</span>
+      <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
+      <span>📍Mannheim</span>
+    </div>
+
+    <!-- duplicate once -->
+    <div class="marquee-content">
+      <span>🚗 Self-pickup only</span>
+      <span>🔒 Held only if prepaid</span>
+      <span>⚡ First come, first served</span>
+      <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
+      <span>📍Mannheim</span>
+    </div>
+  </div>
 </div>
 
 <!-- OFFER STRIP -->
 <div class="offer-strip">
-  🎉 <strong>Bundle Deal:</strong> Select items worth over €180 → discount prices unlock automatically!
+  🎉 <strong>Bundle Deal:</strong> Select items worth over €201 → discount prices unlock automatically!
 </div>
 
 <!-- STICKY CALC -->
@@ -254,7 +364,7 @@ footer p { margin-top:7px; line-height:1.9; }
     </div>
     <div class="prog-wrap">
       <div class="prog-bg"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-      <div class="prog-hint" id="progHint">Select €180+ to unlock discounts</div>
+      <div class="prog-hint" id="progHint">Select €201+ to unlock discounts</div>
     </div>
   </div>
 </div>
@@ -273,7 +383,7 @@ footer p { margin-top:7px; line-height:1.9; }
           <div class="offer-icon">💰</div>
           <div class="offer-pill">ACTIVE</div>
           <h3>Bundle Discount</h3>
-          <p>Select items worth over €180 total — discounted prices activate automatically in the calculator above.</p>
+          <p>Select items worth over €201 total — discounted prices activate automatically in the calculator above.</p>
         </div>
         <div class="offer-card oc2">
           <div class="offer-icon">🛋️</div>
@@ -342,7 +452,8 @@ footer p { margin-top:7px; line-height:1.9; }
 </footer>
 
 <script>
-const THRESHOLD = 180;
+  let saleEnded = false;
+const THRESHOLD = 201;
 
 // ═══════════════════════════════════════════════════════════════
 //  ITEMS LIST
@@ -370,7 +481,7 @@ const items = [
   {
     id:3, name:"Sofa Set", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
-    emoji:"🛋️", bg:"#fff3e0", sold:false,
+    emoji:"🛋️", bg:"#fff3e0", sold:true,
     images:[], pdf:""
   },
   {
@@ -510,6 +621,7 @@ function sSlideTo(id,idx){
 function sMove(id,dir){ sSlideTo(id,(slideIdx[id]||0)+dir); }
 
 function toggleItem(id){
+  if (saleEnded) return;
   const item=items.find(i=>i.id===id);
   if(!item||item.sold) return;
   selected.has(id)?selected.delete(id):selected.add(id);
@@ -574,6 +686,9 @@ function buildWALink(){
 }
 
 function updateWAButtons(){
+
+  if (saleEnded) return;
+
   const sel=items.filter(i=>selected.has(i.id));
   const hasItems=sel.length>0;
   document.querySelectorAll('.wa-dynamic').forEach(btn=>{
@@ -655,6 +770,85 @@ function updateUI(){
 }
 
 renderItems();
+
+
+
+
+
+//Countdown Script
+
+function startCountdown() {
+  const endDate = new Date("April 25, 2026 23:59:59").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = endDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("countdown").innerHTML = "⛔ This sale has ended. Thank you everyone! ⛔";
+      disableSale();
+      return;
+
+    }
+
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const mins = Math.floor((diff / (1000 * 60)) % 60);
+    const secs = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("cd-days").textContent = days;
+    document.getElementById("cd-hours").textContent = hours;
+    document.getElementById("cd-mins").textContent = mins;
+    document.getElementById("cd-secs").textContent = secs;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+}
+
+startCountdown();
+
+
+function disableSale() {
+  // Disable all select buttons
+  document.querySelectorAll('.sel-btn').forEach(btn => {
+    btn.disabled = true;
+    btn.style.background = "#888";
+    btn.style.cursor = "not-allowed";
+    btn.innerText = "Sale Ended";
+  });
+
+  // Disable clicking on items
+  document.querySelectorAll('.item-row').forEach(row => {
+    row.onclick = null;
+    row.style.cursor = "not-allowed";
+  });
+
+ document.querySelectorAll('.wa-dynamic').forEach(btn => {
+  btn.href = "https://wa.me/919831803076?text=Hello%2C%20is%20anything%20still%20available%20from%20your%20moving%20sale%3F";
+  btn.style.background = "#25D366";
+
+  // change button text safely (without breaking SVG)
+  const textNode = btn.childNodes[btn.childNodes.length - 1];
+  if (textNode && textNode.nodeType === 3) {
+    textNode.textContent = " Ask Availability";
+  } else {
+    btn.append(" Ask Availability");
+  }
+});
+
+
+document.querySelector('.hero-sub').innerHTML =
+  "";
+
+document.querySelector('.cd-label').innerHTML =
+  "";
+
+
+
+}
+
 </script>
 
 <!--
