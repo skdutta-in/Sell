@@ -42,7 +42,8 @@ a { text-decoration:none; }
 .offer-strip strong { font-size:0.88rem; }
 
 /* ── STICKY CALC ── */
-.calc-bar { background:var(--warm-white); border-bottom:1px solid var(--light-brown); padding:10px 16px; position:sticky; top:0; z-index:200; box-shadow:0 3px 16px rgba(0,0,0,.08); }
+.calc-bar { background:var(--warm-white); border-bottom:1px solid var(--light-brown); padding:15px 16px 10px; position:sticky; top:0; z-index:200; box-shadow:0 3px 16px rgba(0,0,0,.08); overflow:hidden; }
+.calc-bar::before { content:''; display:block; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg, #FF9933 33.3%, #fff 33.3% 66.6%, #138808 66.6%); }
 .calc-inner { max-width:860px; margin:0 auto; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
 .calc-left { flex:1; min-width:0; }
 .calc-lbl { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
@@ -69,6 +70,26 @@ a { text-decoration:none; }
 
 /* ── SECTION WRAPPER ── */
 .page-wrap { max-width:860px; margin:0 auto; padding:0 14px; }
+
+/* ── ITEMS SECTION HEADER ── */
+.items-section-header {
+  margin: 22px 0 4px;
+  text-align: center;
+}
+.items-section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--navy);
+  white-space: nowrap;
+  display: inline-block;
+  background: var(--warm-white);
+  border: none;
+  border-top: 4px solid #FF9933;
+  border-bottom: 4px solid #138808;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+  text-shadow: none;
+}
 
 /* ── ACCORDION ── */
 .accordion { margin:18px 0 0; border-radius:var(--card-radius); overflow:hidden; border:1.5px solid var(--light-brown); background:var(--warm-white); }
@@ -188,11 +209,17 @@ footer p { margin-top:7px; line-height:1.9; }
   bottom: 20px;
   right: 20px;
   z-index: 9999;
-  border-radius: 50px;
-  padding: 14px 18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
   animation: wa-pulse 2s infinite;
 }
+.wa-float span { display:none; }
+.wa-float svg { width:24px; height:24px; flex-shrink:0; }
 
 /* Optional pulse animation */
 @keyframes wa-pulse {
@@ -201,12 +228,82 @@ footer p { margin-top:7px; line-height:1.9; }
   100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); }
 }
 
-
-.wa-float {
+/* Floating Info Button */
+.info-float {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  padding: 14px;
+  background: #FF9933;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(255,153,51,0.45);
+  animation: info-pulse 2s infinite;
+  transition: transform .2s, box-shadow .2s;
 }
-.wa-float span { display:none; }
+.info-float:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(255,153,51,.6); }
+@keyframes info-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,153,51,0.65); }
+  70%  { box-shadow: 0 0 0 12px rgba(255,153,51,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
+}
+
+/* Bottom Sheet Overlay */
+.sheet-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+.sheet-overlay.open { opacity: 1; pointer-events: all; }
+
+.bottom-sheet {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 10001;
+  background: var(--warm-white);
+  border-radius: 20px 20px 0 0;
+  padding: 0 0 30px;
+  max-height: 85vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow: 0 -8px 40px rgba(0,0,0,.2);
+}
+.bottom-sheet.open { transform: translateY(0); }
+
+.sheet-handle-wrap {
+  position: sticky;
+  top: 0;
+  background: var(--warm-white);
+  padding: 12px 20px 10px;
+  border-bottom: 1.5px solid var(--light-brown);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  border-radius: 20px 20px 0 0;
+}
+.sheet-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--charcoal); }
+.sheet-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); line-height: 1; padding: 0 4px; }
+.sheet-close:hover { color: var(--charcoal); }
+
+/* Info hint strip - Indian tricolor green */
+.info-hint-strip { background:linear-gradient(135deg,#0d6606,#138808); color:#fff; padding:10px 16px; text-align:center; font-size:0.82rem; font-weight:500; }
+.info-hint-strip strong { font-size:0.88rem; }
+.info-hint-strip span { color:#fff; font-weight:700; cursor:pointer; text-decoration:underline dotted rgba(255,255,255,.6); text-underline-offset:3px; }
+.info-hint-strip span:hover { text-decoration:underline; }
 
 
 
@@ -248,45 +345,78 @@ footer p { margin-top:7px; line-height:1.9; }
 
 
 .countdown-box {
-  margin-top: 18px;
+  margin-top: 22px;
   text-align: center;
 }
 
 .cd-label {
-  font-size: 0.75rem;
-  letter-spacing: 2px;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: #bbb;
-  margin-bottom: 8px;
+  color: #aaa;
+  margin-bottom: 14px;
 }
 
 .countdown {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .countdown div {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,153,51,0.4);
+  background: rgba(10,10,46,0.85);
+  border: 1.5px solid rgba(255,153,51,0.5);
   border-radius: 10px;
-  padding: 10px 12px;
-  min-width: 60px;
+  padding: 9px 7px 7px;
+  min-width: 46px;
+  position: relative;
+  box-shadow:
+    0 0 12px rgba(255,153,51,0.3),
+    0 0 28px rgba(255,153,51,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  animation: cd-glow 3s ease-in-out infinite;
+}
+
+.countdown div::after {
+  content: '';
+  position: absolute;
+  left: 8px; right: 8px;
+  top: 50%; transform: translateY(-50%);
+  height: 1px;
+  background: rgba(255,153,51,0.18);
+}
+
+@keyframes cd-glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255,153,51,0.25), 0 0 24px rgba(255,153,51,0.1), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(255,153,51,0.55), 0 0 40px rgba(255,153,51,0.25), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
 }
 
 .countdown span {
   display: block;
   font-family: 'Playfair Display', serif;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.35rem;
+  font-weight: 900;
   color: #FF9933;
+  line-height: 1.1;
+  text-shadow:
+    0 0 10px rgba(255,153,51,0.8),
+    0 0 22px rgba(255,153,51,0.5),
+    0 0 40px rgba(255,153,51,0.3);
+  letter-spacing: 1px;
 }
 
 .countdown small {
-  font-size: 0.65rem;
-  color: #ccc;
-  letter-spacing: 1px;
+  display: block;
+  font-size: 0.52rem;
+  color: #aaa;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 4px;
 }
 
 
@@ -308,7 +438,7 @@ footer p { margin-top:7px; line-height:1.9; }
 <section class="hero">
   <!-- Ashoka Chakra watermark -->
   <div style="position:absolute;right:-30px;bottom:-30px;width:200px;height:200px;opacity:0.06;pointer-events:none;font-size:200px;line-height:1;">☸</div>
-  <div class="hero-tag">🏠 <strong>Moving Out Sale</strong> — <span style="color:#FF9933;font-weight:900;letter-spacing:2px;text-shadow:0 0 12px rgba(255,153,51,.6)">Mannheim</span></div>
+  <div class="hero-tag">🏠 <strong>Moving Out Sale</strong> - <span style="color:#FF9933;font-weight:900;letter-spacing:2px;text-shadow:0 0 12px rgba(255,153,51,.6)">Mannheim</span></div>
   <h1>Quality Items<br>at <span>Great Prices</span></h1>
   <div class="mannheim-badge">📍 Heinrich-Wittkamp-Str., 68176 Mannheim</div>
   <p class="hero-sub">Everything must go! Well-maintained items looking for a new home. Browse, select what you love, and WhatsApp us to arrange self-pickup.</p>
@@ -337,6 +467,7 @@ footer p { margin-top:7px; line-height:1.9; }
       <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
       <span>📍Mannheim, Germany</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
+      <span>🎁 <span class="hl">Attractive Offers</span> available - tap ℹ️ to know more!</span>
     </div>
 
     <!-- duplicate once -->
@@ -347,6 +478,7 @@ footer p { margin-top:7px; line-height:1.9; }
       <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
       <span>📍Mannheim, Germany</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
+      <span>🎁 <span class="hl">Attractive Offers</span> available - tap ℹ️ to know more!</span>
     </div>
   </div>
 </div>
@@ -356,12 +488,17 @@ footer p { margin-top:7px; line-height:1.9; }
   🎉 <strong>Bundle Deal:</strong> Select items worth over €201 → discount prices unlock automatically!
 </div>
 
+<!-- INFO HINT STRIP -->
+<div class="info-hint-strip">
+  💡 Tap <span onclick="openSheet()">ℹ️ the info button</span> (bottom-left) to view all special offers &amp; sale rules.
+</div>
+
 <!-- STICKY CALC -->
 <div class="calc-bar">
   <div class="calc-inner">
     <div class="calc-left">
       <div class="calc-lbl">Your Selection</div>
-      <div class="calc-num" id="calcNum">0 items — €0</div>
+      <div class="calc-num" id="calcNum">0 items - €0</div>
       <div class="calc-date" id="calcDate">&nbsp;</div>
     </div>
     <div class="prog-wrap">
@@ -371,54 +508,54 @@ footer p { margin-top:7px; line-height:1.9; }
   </div>
 </div>
 
+
+<!-- FLOATING INFO BUTTON -->
+<button class="info-float" onclick="openSheet()" aria-label="Offers and Rules">ℹ️</button>
+
+<!-- BOTTOM SHEET OVERLAY -->
+<div class="sheet-overlay" id="sheetOverlay" onclick="closeSheet()"></div>
+
+<!-- BOTTOM SHEET -->
+<div class="bottom-sheet" id="bottomSheet">
+  <div class="sheet-handle-wrap">
+    <div class="sheet-title">🎁 Special Offers &amp; Rules</div>
+    <button class="sheet-close" onclick="closeSheet()">✕</button>
+  </div>
+  <div class="offers-grid" style="padding:16px;">
+    <div class="offer-card oc1">
+      <div class="offer-icon">💰</div>
+      <div class="offer-pill">ACTIVE</div>
+      <h3>Bundle Discount</h3>
+      <p>Select items worth over €201 total - discounted prices activate automatically in the calculator above.</p>
+    </div>
+    <div class="offer-card oc2">
+      <div class="offer-icon">🛋️</div>
+      <div class="offer-pill">PREPAID ONLY</div>
+      <h3>Take-All Deal</h3>
+      <p>Buy ALL remaining items and get up to 10% off. Prepayment required. Pickup date based on last available item - open to discussion!</p>
+    </div>
+    <div class="offer-card oc3">
+      <div class="offer-icon">🔒</div>
+      <div class="offer-pill">POLICY</div>
+      <h3>Reservation Policy</h3>
+      <p>Items are <strong>only held if prepaid</strong>. Without prepayment it's first come, first served. No exceptions.</p>
+    </div>
+    <div class="offer-card oc4">
+      <div class="offer-icon">⚡</div>
+      <div class="offer-pill">BONUS</div>
+      <h3>Quick Confirm Deal</h3>
+      <p>Confirm &amp; prepay within 24 hrs <strong>from the item's available date</strong> → get an extra <strong>€5 off</strong>. Fast buyers rewarded!</p>
+    </div>
+  </div>
+</div>
+
+<!-- ITEMS SECTION HEADER - full width -->
+<div class="items-section-header">
+  <div class="items-section-title">🛒 Items &amp; Prices</div>
+</div>
+
 <div class="page-wrap">
-
-  <!-- ACCORDION 1: SPECIAL OFFERS -->
-  <div class="accordion open" id="accOffers">
-    <div class="acc-header" onclick="toggleAcc('accOffers')">
-      <div class="acc-title">🎁 Special Offers &amp; Rules</div>
-      <div class="acc-arrow">▼</div>
-    </div>
-    <div class="acc-body">
-      <div class="offers-grid">
-        <div class="offer-card oc1">
-          <div class="offer-icon">💰</div>
-          <div class="offer-pill">ACTIVE</div>
-          <h3>Bundle Discount</h3>
-          <p>Select items worth over €201 total — discounted prices activate automatically in the calculator above.</p>
-        </div>
-        <div class="offer-card oc2">
-          <div class="offer-icon">🛋️</div>
-          <div class="offer-pill">PREPAID ONLY</div>
-          <h3>Take-All Deal</h3>
-          <p>Buy ALL remaining items and get 10% off. Full prepayment required. Pickup date based on last available item — open to discussion!</p>
-        </div>
-        <div class="offer-card oc3">
-          <div class="offer-icon">🔒</div>
-          <div class="offer-pill">POLICY</div>
-          <h3>Reservation Policy</h3>
-          <p>Items are <strong>only held if prepaid</strong>. Without prepayment it's first come, first served. No exceptions.</p>
-        </div>
-        <div class="offer-card oc4">
-          <div class="offer-icon">⚡</div>
-          <div class="offer-pill">BONUS</div>
-          <h3>Quick Confirm Deal</h3>
-          <p>Confirm &amp; prepay within 24 hrs <strong>from the item's available date</strong> → get an extra <strong>€5 off</strong>. Fast buyers rewarded!</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ACCORDION 2: ITEMS -->
-  <div class="accordion open" id="accItems">
-    <div class="acc-header" onclick="toggleAcc('accItems')">
-      <div class="acc-title">🛒 Items &amp; Prices</div>
-      <div class="acc-arrow">▼</div>
-    </div>
-    <div class="acc-body">
-      <div class="items-list" id="itemsList"></div>
-    </div>
-  </div>
+  <div class="items-list" id="itemsList"></div>
 
   <!-- SUMMARY -->
   <div class="summary-wrap">
@@ -432,7 +569,7 @@ footer p { margin-top:7px; line-height:1.9; }
         <div class="sum-tot"><div class="stl">You Save</div><div class="stv" id="sumSaved" style="color:#4CAF50">€0</div></div>
       </div>
       <div class="sum-cta">
-        <p>💬 Tap <strong>WhatsApp Now</strong> — your selected items &amp; total are pre-filled in the message. <strong>💰 Items held only if prepaid. </strong></p>
+        <p>💬 Tap <strong>WhatsApp Now</strong> - your selected items &amp; total are pre-filled in the message. <strong>💰 Items held only if prepaid. </strong></p>
         <a id="waBtnSummary" href="https://wa.me/919831803076?text=Hello%2C%20I%20want%20to%20buy%20some%20items%20from%20your%20Mannheim%20moving%20sale!" class="wa-btn wa-dynamic" target="_blank" style="padding:10px 20px;font-size:0.85rem;">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp Now
@@ -444,14 +581,32 @@ footer p { margin-top:7px; line-height:1.9; }
 </div><!-- /page-wrap -->
 
 <footer>
-  <strong>Moving Out Sale — Mannheim</strong>
+  <strong>Moving Out Sale - Mannheim</strong>
   <p>💬 WhatsApp only &nbsp;·&nbsp; 🚗 Self-pickup &nbsp;·&nbsp; Sold as-is<br>
   🔒 Held only if prepaid · otherwise first come, first served<br>
   📅 Pickup not before item's available date</p>
 <br><hr>
   Made with 💓 by Sanjib Kumar Dutta<br><br>A product from skdutta <br><img src="icon.png" width="100" style="float:centre">
-
+  <br><br>
+  <div id="visit-counter" style="font-size:0.78rem;color:#aac;margin-top:6px;">
+    👁 Site Visits: <span id="visit-count" style="color:var(--amber);font-weight:700;">-</span>
+  </div>
 </footer>
+
+<script data-goatcounter="https://skdutta.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+  // Fetch and display visit count from GoatCounter API
+  fetch('https://skdutta.goatcounter.com/counter//_.json')
+    .then(r => r.json())
+    .then(data => {
+      const el = document.getElementById('visit-count');
+      if (el && data.count) el.textContent = Number(data.count).toLocaleString('en-IN');
+    })
+    .catch(() => {
+      const el = document.getElementById('visit-count');
+      if (el) el.textContent = '-';
+    });
+</script>
 
 <script>
   let saleEnded = false;
@@ -678,7 +833,7 @@ function buildWALink(){
   let msg='Hello! I am interested in the following items from your Mannheim moving sale:\n\n';
   sel.forEach(i=>{
     const p=applyDisc?i.discount:i.actual;
-    msg+=`• ${i.name} — €${p}\n`;
+    msg+=`• ${i.name} - €${p}\n`;
   });
   msg+=`\nTotal: €${finalTotal}`;
   if(applyDisc) msg+=` (bundle discount applied ✅)`;
@@ -696,10 +851,10 @@ function updateWAButtons(){
   document.querySelectorAll('.wa-dynamic').forEach(btn=>{
     if(hasItems){
       btn.href=buildWALink();
-      btn.style.background='#128C7E';
+      if(!btn.classList.contains('wa-float')) btn.style.background='#128C7E';
     } else {
       btn.href='https://wa.me/919831803076?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!';
-      btn.style.background='';
+      if(!btn.classList.contains('wa-float')) btn.style.background='';
     }
   });
 }
@@ -748,7 +903,7 @@ function updateUI(){
   }
 
   const cnt=selected.size+' item'+(selected.size!==1?'s':'');
-  document.getElementById('calcNum').textContent=`${cnt} — €${finalTotal}`;
+  document.getElementById('calcNum').textContent=`${cnt} - €${finalTotal}`;
   document.getElementById('calcDate').textContent=pd?`📅 Pickup from: ${fmtDate(pd)}`:'\u00a0';
 
   const box=document.getElementById('summaryBox');
@@ -787,7 +942,7 @@ function startCountdown() {
     const diff = endDate - now;
 
     if (diff <= 0) {
-      document.getElementById("countdown").innerHTML = "⛔ This sale has ended. Thank you everyone! ⛔";
+      document.getElementById("countdown").innerHTML = "⛔ This sale has ended. Thank you everyone! ⛔<br><br>";
       disableSale();
       return;
 
@@ -834,7 +989,7 @@ function disableSale() {
   // change button text safely (without breaking SVG)
   const textNode = btn.childNodes[btn.childNodes.length - 1];
   if (textNode && textNode.nodeType === 3) {
-    textNode.textContent = " Ask Availability";
+    textNode.textContent = "";
   } else {
     btn.append(" Ask Availability");
   }
@@ -850,6 +1005,20 @@ document.querySelector('.cd-label').innerHTML =
 
 
 }
+
+// ── Bottom Sheet ────────────────────────────────────────────────
+function openSheet(){
+  document.getElementById('bottomSheet').classList.add('open');
+  document.getElementById('sheetOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeSheet(){
+  document.getElementById('bottomSheet').classList.remove('open');
+  document.getElementById('sheetOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+// Close with Escape key
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSheet(); });
 
 </script>
 
