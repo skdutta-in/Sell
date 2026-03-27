@@ -4,39 +4,41 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Moving Sale — Mannheim</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="Favicon.png" type="image/x-icon">
 <style>
 :root {
-  --cream: #F9F4EE; --warm-white: #FFFCF8; --charcoal: #1C1C1C;
-  --brown: #7B4F2E; --amber: #D4884A; --gold: #C9A84C;
-  --light-brown: #E8D5C4; --muted: #8A7B6E; --green: #3D6B4F; --red: #C0392B;
-  --card-radius: 14px;
+  --cream: #FFF8F0; --warm-white: #FFFDF9; --charcoal: #0a0a2e;
+  --brown: #b36a00; --amber: #FF9933; --gold: #e67300;
+  --light-brown: #FFE0B2; --muted: #7a6a5a; --green: #138808; --red: #C0392B;
+  --navy: #000080; --card-radius: 14px;
 }
 * { margin:0; padding:0; box-sizing:border-box; }
 body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--charcoal); overflow-x:hidden; font-size:15px; }
 a { text-decoration:none; }
 
 /* ── HERO ── */
-.hero { background:var(--charcoal); color:var(--cream); padding:44px 20px 36px; text-align:center; position:relative; overflow:hidden; }
-.hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(212,136,74,.18) 0%,transparent 60%),radial-gradient(ellipse at 75% 20%,rgba(201,168,76,.12) 0%,transparent 50%); pointer-events:none; }
-.hero-tag { display:inline-block; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--amber); border:1px solid var(--amber); padding:4px 12px; border-radius:20px; margin-bottom:14px; }
+.hero { background: var(--navy); color:#fff; padding:44px 20px 5px; text-align:center; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%,rgba(255,153,51,.2) 0%,transparent 55%),radial-gradient(ellipse at 75% 20%,rgba(19,136,8,.15) 0%,transparent 50%); pointer-events:none; }
+/* tricolor top stripe */
+.hero::after { content:''; position:absolute; top:0; left:0; right:0; height:5px; background:linear-gradient(90deg, #FF9933 33.3%, #fff 33.3% 66.6%, #138808 66.6%); }
+.hero-tag { display:inline-block; font-size:16px; letter-spacing:2px; text-transform:uppercase; color:#fff; background:rgba(255,153,51,.15); border:1.5px solid var(--amber); padding:6px 16px; border-radius:20px; margin-bottom:14px; font-weight:700; box-shadow:0 0 18px rgba(255,153,51,.25); }
 .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(1.8rem,7vw,3.8rem); font-weight:900; line-height:1.1; margin-bottom:10px; }
 .hero h1 span { color:var(--amber); }
-.mannheim-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(212,136,74,.15); border:1.5px solid var(--amber); color:#fff; font-size:0.88rem; font-weight:600; letter-spacing:1.5px; padding:6px 18px; border-radius:30px; margin:10px 0 14px; }
+.mannheim-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(212,136,74,.15); border:1.5px solid var(--amber); color:#fff; font-size:0.68rem; font-weight:400; letter-spacing:1.5px; padding:6px 18px; border-radius:30px; margin:10px 0 14px; }
 .hero-sub { font-size:0.88rem; font-weight:300; color:#bbb; max-width:460px; margin:0 auto 20px; line-height:1.65; }
 .wa-btn { display:inline-flex; align-items:center; gap:8px; background:#25D366; color:#fff; padding:13px 28px; border-radius:50px; font-size:0.95rem; font-weight:600; transition:transform .2s,box-shadow .2s; }
 .wa-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,.35); }
 .wa-btn svg { width:20px; height:20px; fill:#fff; }
 
 /* ── INFO BAR ── */
-.info-bar { background:#212121; color:#bbb; font-size:0.75rem; padding:8px 16px; display:flex; justify-content:center; gap:0; flex-wrap:nowrap; overflow-x:auto; white-space:nowrap; scrollbar-width:none; }
+.info-bar { background:#000066; color:#ddd; font-size:0.75rem; padding:8px 16px; display:flex; justify-content:center; gap:0; flex-wrap:nowrap; overflow-x:auto; white-space:nowrap; scrollbar-width:none; }
 .info-bar::-webkit-scrollbar { display:none; }
-.info-bar span { padding:0 12px; border-right:1px solid #333; flex-shrink:0; }
+.info-bar span { padding:0 12px; border-right:1px solid rgba(255,255,255,.15); flex-shrink:0; }
 .info-bar span:last-child { border-right:none; }
 .info-bar .hl { color:var(--amber); font-weight:600; }
 
 /* ── OFFER STRIP (always visible, compact) ── */
-.offer-strip { background:linear-gradient(135deg,var(--brown),var(--amber)); color:#fff; padding:10px 16px; text-align:center; font-size:0.82rem; font-weight:500; }
+.offer-strip { background:linear-gradient(135deg,#e67300,#FF9933); color:#fff; padding:10px 16px; text-align:center; font-size:0.82rem; font-weight:500; }
 .offer-strip strong { font-size:0.88rem; }
 
 /* ── STICKY CALC ── */
@@ -48,11 +50,22 @@ a { text-decoration:none; }
 .calc-date { font-size:0.72rem; color:var(--amber); font-weight:500; min-height:1em; }
 .prog-wrap { flex:1; min-width:140px; max-width:260px; }
 .prog-bg { background:var(--light-brown); border-radius:10px; height:7px; overflow:hidden; }
-.prog-fill { height:100%; background:linear-gradient(90deg,var(--amber),var(--gold)); border-radius:10px; transition:width .4s ease; }
-.prog-hint { font-size:0.68rem; color:var(--muted); margin-top:3px; }
-.disc-badge { background:var(--green); color:#fff; padding:5px 13px; border-radius:30px; font-size:0.75rem; font-weight:600; display:none; white-space:nowrap; }
-.disc-badge.on { display:block; animation:popIn .3s ease; }
-@keyframes popIn { from{transform:scale(.7);opacity:0} to{transform:scale(1);opacity:1} }
+.prog-fill { height:100%; background:linear-gradient(90deg,#FF9933,#ffffff,#138808); border-radius:10px; transition:width .4s ease; }
+.prog-hint { font-size:0.68rem; color:var(--muted); margin-top:3px; transition:color .3s; }
+.prog-hint.unlocked { color:#1aaa35; font-weight:700; font-size:0.76rem; animation:popIn .35s ease; }
+@keyframes popIn { from{transform:scale(.8);opacity:0} to{transform:scale(1);opacity:1} }
+
+/* confetti canvas */
+#confetti-canvas { position:fixed; inset:0; pointer-events:none; z-index:9999; }
+
+/* last collection date banner */
+.deadline-bar { background:#00004d; border-top:2px solid var(--amber); border-bottom:2px solid var(--amber); color:#ffd699; padding:9px 16px; text-align:center; font-size:0.8rem; font-weight:500; }
+.deadline-bar strong { color:var(--amber); font-size:0.86rem; }
+
+/* bright PDF button */
+.pdf-btn { display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg,#e53935,#c62828); border:none; color:#fff; border-radius:20px; padding:5px 12px; font-size:0.72rem; font-weight:700; cursor:pointer; transition:background .2s,box-shadow .2s,transform .15s; text-decoration:none; flex-shrink:0; box-shadow:0 2px 8px rgba(198,40,40,.4); letter-spacing:.3px; }
+.pdf-btn:hover { background:linear-gradient(135deg,#c62828,#b71c1c); box-shadow:0 4px 14px rgba(198,40,40,.55); transform:translateY(-1px); }
+.pdf-btn svg { width:12px; height:12px; flex-shrink:0; }
 
 /* ── SECTION WRAPPER ── */
 .page-wrap { max-width:860px; margin:0 auto; padding:0 14px; }
@@ -60,7 +73,7 @@ a { text-decoration:none; }
 /* ── ACCORDION ── */
 .accordion { margin:18px 0 0; border-radius:var(--card-radius); overflow:hidden; border:1.5px solid var(--light-brown); background:var(--warm-white); }
 .acc-header { display:flex; align-items:center; justify-content:space-between; padding:14px 18px; cursor:pointer; user-select:none; gap:10px; }
-.acc-header:hover { background:rgba(212,136,74,.05); }
+.acc-header:hover { background:rgba(255,153,51,.06); }
 .acc-title { font-family:'Playfair Display',serif; font-size:1.05rem; font-weight:700; display:flex; align-items:center; gap:8px; }
 .acc-arrow { font-size:1rem; color:var(--amber); transition:transform .3s; flex-shrink:0; }
 .acc-body { display:none; border-top:1.5px solid var(--light-brown); }
@@ -70,10 +83,10 @@ a { text-decoration:none; }
 /* ── OFFERS GRID (inside accordion) ── */
 .offers-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; padding:16px; }
 .offer-card { border-radius:12px; padding:18px 16px; position:relative; overflow:hidden; }
-.oc1 { background:var(--charcoal); color:var(--cream); }
-.oc2 { background:linear-gradient(135deg,var(--amber),var(--gold)); color:#fff; }
-.oc3 { background:var(--green); color:#fff; }
-.oc4 { background:linear-gradient(135deg,#2c3e50,#3d5a80); color:#fff; }
+.oc1 { background:var(--navy); color:#fff; }
+.oc2 { background:linear-gradient(135deg,#FF9933,#e67300); color:#fff; }
+.oc3 { background:linear-gradient(135deg,#138808,#0d6606); color:#fff; }
+.oc4 { background:linear-gradient(135deg,#000066,#000099); color:#fff; }
 .offer-icon { font-size:1.5rem; margin-bottom:8px; }
 .offer-card h3 { font-family:'Playfair Display',serif; font-size:0.95rem; font-weight:700; margin-bottom:5px; }
 .offer-card p { font-size:0.77rem; line-height:1.55; opacity:.88; }
@@ -89,7 +102,7 @@ a { text-decoration:none; }
   margin-bottom:12px; cursor:pointer; position:relative;
 }
 .item-row:hover:not(.sold) { box-shadow:0 6px 24px rgba(0,0,0,.09); }
-.item-row.selected { border-color:var(--amber); box-shadow:0 0 0 3px rgba(212,136,74,.15); }
+.item-row.selected { border-color:var(--amber); box-shadow:0 0 0 3px rgba(255,153,51,.2); }
 .item-row.sold { cursor:not-allowed; opacity:.6; filter:grayscale(.5); }
 
 /* thumbnail / slideshow column */
@@ -132,13 +145,10 @@ a { text-decoration:none; }
 .sel-btn { display:flex; align-items:center; gap:5px; background:var(--charcoal); color:#fff; border:none; border-radius:20px; padding:5px 13px; font-size:0.72rem; font-weight:600; cursor:pointer; transition:background .2s; flex-shrink:0; }
 .sel-btn:hover { background:#333; }
 .item-row.selected .sel-btn { background:var(--amber); }
-.pdf-btn { display:flex; align-items:center; gap:4px; background:transparent; border:1.5px solid var(--light-brown); color:var(--muted); border-radius:20px; padding:5px 11px; font-size:0.72rem; font-weight:500; cursor:pointer; transition:border-color .2s,color .2s; text-decoration:none; flex-shrink:0; }
-.pdf-btn:hover { border-color:var(--amber); color:var(--amber); }
-.pdf-btn svg { width:12px; height:12px; flex-shrink:0; }
 
 /* ── SUMMARY BOX ── */
 .summary-wrap { margin:18px 0 4px; }
-.summary-inner { background:var(--charcoal); color:var(--cream); border-radius:var(--card-radius); padding:22px 20px; display:none; }
+.summary-inner { background:var(--navy); color:#fff; border-radius:var(--card-radius); padding:22px 20px; display:none; border:1.5px solid rgba(255,153,51,.3); }
 .summary-inner.on { display:block; }
 .sum-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--amber); margin-bottom:14px; }
 .sum-list { list-style:none; margin-bottom:16px; }
@@ -155,7 +165,7 @@ a { text-decoration:none; }
 .sum-cta p { font-size:0.78rem; color:#aaa; flex:1; min-width:160px; line-height:1.5; }
 
 /* ── FOOTER ── */
-footer { background:var(--charcoal); color:#aaa; text-align:center; padding:28px 18px; font-size:0.78rem; margin-top:24px; }
+footer { background:var(--navy); color:#aac; text-align:center; padding:10px 18px; font-size:0.78rem; margin-top:24px; border-top:3px solid var(--amber); }
 footer strong { color:var(--amber); font-family:'Playfair Display',serif; font-size:1rem; }
 footer p { margin-top:7px; line-height:1.9; }
 
@@ -170,29 +180,63 @@ footer p { margin-top:7px; line-height:1.9; }
 @media(min-width:860px){
   .item-thumb { width:180px; }
 }
+
+
+/* Floating WhatsApp Button */
+.wa-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  border-radius: 50px;
+  padding: 14px 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  animation: wa-pulse 2s infinite;
+}
+
+/* Optional pulse animation */
+@keyframes wa-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37,211,102, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(37,211,102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37,211,102, 0); }
+}
+
+
+.wa-float {
+  border-radius: 50%;
+  padding: 14px;
+}
+.wa-float span { display:none; }
+
 </style>
 </head>
 <body>
 
+
+<a href="https://wa.me/919831803076?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!"
+   class="wa-btn wa-dynamic wa-float"
+   target="_blank">
+
+<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<canvas id="confetti-canvas"></canvas>
+
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-tag">🏠 Moving Out Sale — <span style="color:#fff;font-weight:700;letter-spacing:2px">Mannheim</span></div>
+  <!-- Ashoka Chakra watermark -->
+  <div style="position:absolute;right:-30px;bottom:-30px;width:200px;height:200px;opacity:0.06;pointer-events:none;font-size:200px;line-height:1;">☸</div>
+  <div class="hero-tag">🏠 <strong>Moving Out Sale</strong> — <span style="color:#FF9933;font-weight:900;letter-spacing:2px;text-shadow:0 0 12px rgba(255,153,51,.6)">Mannheim</span></div>
   <h1>Quality Items<br>at <span>Great Prices</span></h1>
-  <div class="mannheim-badge">📍 Mannheim, Germany</div>
+  <div class="mannheim-badge">📍 Heinrich-Wittkamp-Str., 68176 Mannheim</div>
   <p class="hero-sub">Everything must go! Well-maintained items looking for a new home. Browse, select what you love, and WhatsApp us to arrange self-pickup.</p>
-  <a href="https://wa.me/49XXXXXXXXXX?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!" class="wa-btn" target="_blank">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-    WhatsApp to Book
-  </a>
 </section>
-
 <!-- INFO BAR -->
 <div class="info-bar">
   <span>🚗 Self-pickup only</span>
-  <span>📍 <span class="hl">Mannheim</span></span>
-  <span>💬 WhatsApp only</span>
   <span>🔒 Held only if prepaid</span>
   <span>⚡ First come, first served</span>
+  <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
 </div>
 
 <!-- OFFER STRIP -->
@@ -212,7 +256,6 @@ footer p { margin-top:7px; line-height:1.9; }
       <div class="prog-bg"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
       <div class="prog-hint" id="progHint">Select €180+ to unlock discounts</div>
     </div>
-    <div class="disc-badge" id="discBadge">✅ Discount on!</div>
   </div>
 </div>
 
@@ -236,7 +279,7 @@ footer p { margin-top:7px; line-height:1.9; }
           <div class="offer-icon">🛋️</div>
           <div class="offer-pill">PREPAID ONLY</div>
           <h3>Take-All Deal</h3>
-          <p>Buy ALL remaining items and get an extra 10% off. Full prepayment required. Pickup date based on last available item — open to discussion!</p>
+          <p>Buy ALL remaining items and get 10% off. Full prepayment required. Pickup date based on last available item — open to discussion!</p>
         </div>
         <div class="offer-card oc3">
           <div class="offer-icon">🔒</div>
@@ -248,7 +291,7 @@ footer p { margin-top:7px; line-height:1.9; }
           <div class="offer-icon">⚡</div>
           <div class="offer-pill">BONUS</div>
           <h3>Quick Confirm Deal</h3>
-          <p>Confirm &amp; prepay within 24 hrs <strong>from the item's available date</strong> → get an extra €5 off. Fast buyers rewarded!</p>
+          <p>Confirm &amp; prepay within 24 hrs <strong>from the item's available date</strong> → get an extra <strong>€5 off</strong>. Fast buyers rewarded!</p>
         </div>
       </div>
     </div>
@@ -277,8 +320,8 @@ footer p { margin-top:7px; line-height:1.9; }
         <div class="sum-tot"><div class="stl">You Save</div><div class="stv" id="sumSaved" style="color:#4CAF50">€0</div></div>
       </div>
       <div class="sum-cta">
-        <p>📸 Screenshot this and WhatsApp us to confirm. <strong>Self-pickup only.</strong> Items held only if prepaid.</p>
-        <a href="https://wa.me/49XXXXXXXXXX?text=Hello%2C%20I%20want%20to%20buy%20some%20items%20from%20your%20Mannheim%20moving%20sale!" class="wa-btn" target="_blank" style="padding:10px 20px;font-size:0.85rem;">
+        <p>💬Tap <strong>WhatsApp Now</strong> — your selected items &amp; total are pre-filled in the message. <strong>🚗Self-pickup only.</strong> 💰Items held only if prepaid. <strong>🙋‍♂️Please bring help for heavy items!</strong></p>
+        <a id="waBtnSummary" href="https://wa.me/919831803076?text=Hello%2C%20I%20want%20to%20buy%20some%20items%20from%20your%20Mannheim%20moving%20sale!" class="wa-btn wa-dynamic" target="_blank" style="padding:10px 20px;font-size:0.85rem;">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           WhatsApp Now
         </a>
@@ -291,8 +334,11 @@ footer p { margin-top:7px; line-height:1.9; }
 <footer>
   <strong>Moving Sale — Mannheim</strong>
   <p>💬 WhatsApp only &nbsp;·&nbsp; 🚗 Self-pickup &nbsp;·&nbsp; Sold as-is<br>
-  🔒 Held <strong style="color:var(--amber)">only if prepaid</strong> · otherwise first come, first served<br>
+  🔒 Held only if prepaid · otherwise first come, first served<br>
   📅 Pickup not before item's available date</p>
+<br><hr>
+  Made with 💓 by Sanjib Kumar Dutta<br><br>A product from skdutta <br><img src="icon.png" width="100" style="float:centre">
+
 </footer>
 
 <script>
@@ -312,7 +358,7 @@ const items = [
     emoji:"🧊", bg:"#d4eaf7", sold:false,
     images:[],
     // images: ["https://drive.google.com/uc?export=view&id=FILE_ID_1","https://drive.google.com/uc?export=view&id=FILE_ID_2"],
-    pdf:"https://drive.google.com/file/d/1SpNg9kKf5hInr8Edb0Qiv-riRwZklfKM/view"
+    pdf:""
     // pdf: "https://drive.google.com/file/d/FILE_ID/view"
   },
   {
@@ -348,7 +394,7 @@ const items = [
   {
     id:7, name:"TV", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
-    emoji:"📺", bg:"#e8eaf6", sold:true,
+    emoji:"📺", bg:"#e8eaf6", sold:false,
     images:[], pdf:""
   },
   {
@@ -470,6 +516,77 @@ function toggleItem(id){
   updateUI();
 }
 
+// ── Confetti burst ──────────────────────────────────────────────
+function launchConfetti(){
+  const canvas=document.getElementById('confetti-canvas');
+  const ctx=canvas.getContext('2d');
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+  const pieces=[];
+  const colors=['#FF9933','#FFFFFF','#138808','#000080'];
+  for(let i=0;i<1600;i++){
+    pieces.push({
+      x:Math.random()*canvas.width, y:-10-Math.random()*200,
+      w:6+Math.random()*8, h:4+Math.random()*5,
+      color:colors[Math.floor(Math.random()*colors.length)],
+      rot:Math.random()*360, vx:(Math.random()-0.5)*4,
+      vy:2+Math.random()*4, vr:(Math.random()-0.5)*6, alpha:1
+    });
+  }
+  let frame=0;
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      ctx.save();
+      ctx.globalAlpha=p.alpha;
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot*Math.PI/180);
+      ctx.fillStyle=p.color;
+      ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+      p.x+=p.vx; p.y+=p.vy; p.rot+=p.vr;
+      if(frame>90) p.alpha-=0.012;
+    });
+    frame++;
+    if(pieces.some(p=>p.alpha>0)) requestAnimationFrame(draw);
+    else ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+  draw();
+}
+
+// ── Dynamic WhatsApp message ────────────────────────────────────
+function buildWALink(){
+  const sel=items.filter(i=>selected.has(i.id));
+  const actTotal=sel.reduce((s,i)=>s+i.actual,0);
+  const applyDisc=actTotal>=THRESHOLD;
+  const finalTotal=sel.reduce((s,i)=>s+(applyDisc?i.discount:i.actual),0);
+  const pd=latestDate();
+  let msg='Hello! I am interested in the following items from your Mannheim moving sale:\n\n';
+  sel.forEach(i=>{
+    const p=applyDisc?i.discount:i.actual;
+    msg+=`• ${i.name} — €${p}\n`;
+  });
+  msg+=`\nTotal: €${finalTotal}`;
+  if(applyDisc) msg+=` (bundle discount applied ✅)`;
+  if(pd) msg+=`\nPickup from: ${fmtDate(pd)}`;
+  msg+='\n\nPlease confirm availability. I will arrange self-pickup.';
+  return 'https://wa.me/919831803076?text='+encodeURIComponent(msg);
+}
+
+function updateWAButtons(){
+  const sel=items.filter(i=>selected.has(i.id));
+  const hasItems=sel.length>0;
+  document.querySelectorAll('.wa-dynamic').forEach(btn=>{
+    if(hasItems){
+      btn.href=buildWALink();
+      btn.style.background='#128C7E';
+    } else {
+      btn.href='https://wa.me/919831803076?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!';
+      btn.style.background='';
+    }
+  });
+}
+
 function updateUI(){
   const sel=items.filter(i=>selected.has(i.id));
   const actTotal=sel.reduce((s,i)=>s+i.actual,0);
@@ -483,7 +600,6 @@ function updateUI(){
     const row=document.getElementById('row-'+item.id);
     const priceEl=document.getElementById('price-'+item.id);
     const oldEl=document.getElementById('old-'+item.id);
-    const btn=document.getElementById('selbtn-'+item.id);
     const lbl=document.getElementById('sellbl-'+item.id);
     const isSel=selected.has(item.id);
     row.classList.toggle('selected',isSel);
@@ -502,14 +618,16 @@ function updateUI(){
 
   const pct=Math.min((actTotal/THRESHOLD)*100,100);
   document.getElementById('progFill').style.width=pct+'%';
-  const badge=document.getElementById('discBadge');
+  const hint=document.getElementById('progHint');
+  const wasUnlocked=hint.classList.contains('unlocked');
   if(applyDisc){
-    badge.classList.add('on');
-    document.getElementById('progHint').textContent='🎉 Discount unlocked!';
+    hint.textContent='🎉 Discount unlocked!';
+    hint.classList.add('unlocked');
+    if(!wasUnlocked) launchConfetti();
   } else {
-    badge.classList.remove('on');
+    hint.classList.remove('unlocked');
     const rem=THRESHOLD-actTotal;
-    document.getElementById('progHint').textContent=rem>0?`€${rem} more to unlock discounts`:'Select €180+ to unlock';
+    hint.textContent=rem>0?`€${rem} more to unlock discounts`:'Select €180+ to unlock';
   }
 
   const cnt=selected.size+' item'+(selected.size!==1?'s':'');
@@ -532,6 +650,8 @@ function updateUI(){
   } else {
     box.classList.remove('on');
   }
+
+  updateWAButtons();
 }
 
 renderItems();
