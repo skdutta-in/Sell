@@ -31,7 +31,7 @@ a { text-decoration:none; }
 .wa-btn svg { width:20px; height:20px; fill:#fff; }
 
 /* ── INFO BAR ── */
-.info-bar { background:#000066; color:#ddd; font-size:0.75rem; padding:8px 16px; display:flex; justify-content:center; gap:0; flex-wrap:nowrap; overflow-x:auto; white-space:nowrap; scrollbar-width:none; }
+.info-bar { background:#000066; color:#ddd; font-size:0.75rem; padding:8px 0; display:block; overflow:hidden; white-space:nowrap; scrollbar-width:none; }
 .info-bar::-webkit-scrollbar { display:none; }
 .info-bar span { padding:0 12px; border-right:1px solid rgba(255,255,255,.15); flex-shrink:0; }
 .info-bar span:last-child { border-right:none; }
@@ -156,7 +156,8 @@ a { text-decoration:none; }
 .item-info { flex:1; padding:11px 13px 11px; display:flex; flex-direction:column; justify-content:space-between; min-width:0; }
 .item-top { }
 .item-name { font-family:'Playfair Display',serif; font-size:0.98rem; font-weight:700; margin-bottom:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.item-date-lbl { font-size:0.68rem; color:var(--muted); margin-bottom:8px; }
+.item-date-lbl { font-size:0.68rem; color:var(--muted); margin-bottom:4px; }
+.item-desc { font-size:0.68rem; color:#9a8878; line-height:1.5; margin-bottom:6px; }
 .item-pricing { display:flex; align-items:baseline; gap:7px; margin-bottom:8px; }
 .item-price { font-size:1.15rem; font-weight:700; transition:color .3s; }
 .item-price.disc { color:var(--green); }
@@ -169,21 +170,21 @@ a { text-decoration:none; }
 
 /* ── SUMMARY BOX ── */
 .summary-wrap { margin:18px 0 4px; }
-.summary-inner { background:var(--navy); color:#fff; border-radius:var(--card-radius); padding:22px 20px; display:none; border:1.5px solid rgba(255,153,51,.3); }
+.summary-inner { background:#000080; color:#fff; border-radius:var(--card-radius); padding:22px 20px; display:none; border:1.5px solid rgba(255,153,51,.3); }
 .summary-inner.on { display:block; }
 .sum-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--amber); margin-bottom:14px; }
 .sum-list { list-style:none; margin-bottom:16px; }
-.sum-list li { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,.08); font-size:0.82rem; }
-.sum-list .sn { color:#ddd; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; margin-right:8px; }
-.sum-list .sp { flex-shrink:0; }
+.sum-list li { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,.12); font-size:0.82rem; gap:6px; }
+.sum-list .sn { color:#fff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; margin-right:4px; }
+.sum-list .sp { flex-shrink:0; color:#fff; }
 .sum-list .sp.sv { color:var(--amber); }
-.pickup-box { background:rgba(212,136,74,.12); border:1px solid var(--amber); border-radius:9px; padding:9px 13px; font-size:0.78rem; color:#f0c080; margin-bottom:14px; line-height:1.5; }
+.pickup-box { background:rgba(255,153,51,.15); border:1px solid var(--amber); border-radius:9px; padding:9px 13px; font-size:0.78rem; color:#ffd699; margin-bottom:14px; line-height:1.5; }
 .sum-totals { display:flex; gap:20px; flex-wrap:wrap; margin-bottom:18px; }
-.sum-tot .stl { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:#888; margin-bottom:2px; }
-.sum-tot .stv { font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:700; }
+.sum-tot .stl { font-size:0.65rem; letter-spacing:2px; text-transform:uppercase; color:#aab; margin-bottom:2px; }
+.sum-tot .stv { font-family:'Playfair Display',serif; font-size:1.45rem; font-weight:700; color:#fff; }
 .sum-tot .stv.hl { color:var(--amber); }
-.sum-cta { border-top:1px solid rgba(255,255,255,.1); padding-top:16px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
-.sum-cta p { font-size:0.78rem; color:#aaa; flex:1; min-width:160px; line-height:1.5; }
+.sum-cta { border-top:1px solid rgba(255,255,255,.15); padding-top:16px; display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.sum-cta p { font-size:0.78rem; color:#ccd; flex:1; min-width:160px; line-height:1.5; }
 
 /* ── FOOTER ── */
 footer { background:var(--navy); color:#aac; text-align:center; padding:10px 18px; font-size:0.78rem; margin-top:24px; border-top:3px solid var(--amber); }
@@ -259,6 +260,80 @@ footer p { margin-top:7px; line-height:1.9; }
   100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
 }
 
+/* Floating Cart Button */
+.cart-float {
+  position: fixed;
+  bottom: 84px;
+  right: 20px;
+  z-index: 9999;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--navy);
+  border: 2px solid var(--amber);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  box-shadow: 0 8px 25px rgba(0,0,128,0.45);
+  transition: box-shadow .2s, background .2s;
+  touch-action: none;
+  user-select: none;
+}
+.cart-float:active { cursor: grabbing; }
+.cart-float svg { width: 22px; height: 22px; flex-shrink: 0; pointer-events: none; }
+.cart-float.has-items { background: #FF9933; border-color: #fff; animation: cart-pulse 2s infinite; }
+@keyframes cart-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(255,153,51,0.7); }
+  70%  { box-shadow: 0 0 0 12px rgba(255,153,51,0); }
+  100% { box-shadow: 0 0 0 0 rgba(255,153,51,0); }
+}
+
+/* Add-to-cart bounce animation */
+.cart-float.cart-bounce {
+  animation: cartBounce 0.5s cubic-bezier(.36,.07,.19,.97) !important;
+}
+@keyframes cartBounce {
+  0%   { transform: scale(1)    rotate(0deg); }
+  20%  { transform: scale(1.35) rotate(-12deg); }
+  40%  { transform: scale(1.35) rotate(12deg); }
+  60%  { transform: scale(1.2)  rotate(-6deg); }
+  80%  { transform: scale(1.1)  rotate(4deg); }
+  100% { transform: scale(1)    rotate(0deg); }
+}
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--red);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid #fff;
+  pointer-events: none;
+  animation: badgePop .25s ease;
+}
+@keyframes badgePop {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* Cart sheet item row with delete */
+.sum-list li { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid rgba(255,255,255,.12); font-size:0.82rem; gap:6px; }
+.sum-list .sn { color:#fff; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; flex:1; }
+.sum-list .sp { flex-shrink:0; color:#fff; }
+.sum-list .sp.sv { color:var(--amber); }
+.del-btn { background:rgba(255,255,255,.12); border:none; color:#ffaaaa; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; font-size:0.75rem; line-height:1; transition:background .15s, color .15s; }
+.del-btn:hover { background:var(--red); color:#fff; }
+
 /* Bottom Sheet Overlay */
 .sheet-overlay {
   position: fixed;
@@ -319,22 +394,20 @@ footer p { margin-top:7px; line-height:1.9; }
 .marquee {
   display: flex;
   width: max-content;
-  animation: marqueeMove 18s linear infinite;
+  animation: marqueeMove 30s linear infinite;
+  will-change: transform;
 }
 
 .marquee-content {
   display: flex;
   gap: 0;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 @keyframes marqueeMove {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .info-bar:hover .marquee {
@@ -483,21 +556,27 @@ a.wa-float {
       <span>🚗 Self-pickup only</span>
       <span>🔒 Held only if prepaid</span>
       <span>⚡ First come, first served</span>
-      <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
+      <span>⏰ Last collection: 28 April 2026</span>
       <span>📍Mannheim, Germany</span>
+      <span>🛗 Elevator Access Available</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
-      <span>🎁 <span class="hl">Attractive Offers</span> available - tap ℹ️ to know more!</span>
+      <span>🎁 Attractive Offers available - tap ℹ️ to know more!</span>
+      <span>🆕 New items being added - check back soon!</span>
+      <span></span>
     </div>
 
-    <!-- duplicate once -->
+    <!-- duplicate for seamless loop -->
     <div class="marquee-content">
       <span>🚗 Self-pickup only</span>
       <span>🔒 Held only if prepaid</span>
       <span>⚡ First come, first served</span>
-      <span>⏰ Last collection: <span class="hl">28 April 2026</span></span>
+      <span>⏰ Last collection: 28 April 2026</span>
       <span>📍Mannheim, Germany</span>
+      <span>🛗 Elevator Access Available</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
-      <span>🎁 <span class="hl">Attractive Offers</span> available - tap ℹ️ to know more!</span>
+      <span>🎁 Attractive Offers available - tap ℹ️ to know more!</span>
+      <span>🆕 New items being added - check back soon!</span>
+      <span></span>
     </div>
   </div>
 </div>
@@ -575,11 +654,37 @@ a.wa-float {
 
 <div class="page-wrap">
   <div class="items-list" id="itemsList"></div>
+</div><!-- /page-wrap -->
 
-  <!-- SUMMARY -->
-  <div class="summary-wrap">
-    <div class="summary-inner" id="summaryBox">
-      <div class="sum-title">📋 Your Selection</div>
+<!-- CART FLOAT BUTTON -->
+<button class="cart-float" id="cartFloat" aria-label="View Cart">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+  <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+</button>
+
+<!-- CART BOTTOM SHEET OVERLAY -->
+<div class="sheet-overlay" id="cartSheetOverlay" onclick="closeCartSheet()"></div>
+
+<!-- CART BOTTOM SHEET -->
+<div class="bottom-sheet" id="cartSheet" style="background:#000080;">
+  <div class="sheet-handle-wrap" style="background:#000080;border-bottom:1.5px solid rgba(255,153,51,.3);">
+    <div class="sheet-title" style="color:#FF9933;">🛒 Your Cart</div>
+    <button class="sheet-close" onclick="closeCartSheet()" style="color:#aab;">✕</button>
+  </div>
+  <div style="padding:16px 20px 20px;">
+
+    <!-- Empty state (shown when no items) -->
+    <div id="cartEmpty" style="text-align:center;padding:36px 20px 28px;">
+      <div style="font-size:2.8rem;margin-bottom:14px;opacity:.6;">🛒</div>
+      <div style="color:#fff;font-size:1rem;font-weight:600;margin-bottom:8px;">Your cart is empty</div>
+      <div style="color:#aab;font-size:0.82rem;line-height:1.6;">Tap <strong style="color:var(--amber)">+ Select</strong> on any item in the list below to add it here.</div>
+    </div>
+
+    <!-- Cart content (shown when items exist) -->
+    <div id="cartContent" style="display:none;">
       <ul class="sum-list" id="sumList"></ul>
       <div class="pickup-box" id="pickupBox"></div>
       <div class="sum-totals">
@@ -588,16 +693,16 @@ a.wa-float {
         <div class="sum-tot"><div class="stl">You Save</div><div class="stv" id="sumSaved" style="color:#4CAF50">€0</div></div>
       </div>
       <div class="sum-cta">
-        <p>💬 Tap <strong>Book Now</strong> - your selected items &amp; total are pre-filled in the WhatsApp message. <strong>💰 Items held only if prepaid. </strong></p>
+        <p>💬 Tap <strong>Book Now</strong> - your items &amp; total are pre-filled in WhatsApp. <strong>💰 Items held only if prepaid.</strong></p>
         <a id="waBtnSummary" href="https://wa.me/919831803076?text=Hello%2C%20I%20want%20to%20buy%20some%20items%20from%20your%20Mannheim%20moving%20sale!" class="wa-btn wa-dynamic" target="_blank" style="padding:10px 20px;font-size:0.85rem;">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Book Now
         </a>
       </div>
     </div>
-  </div>
 
-</div><!-- /page-wrap -->
+  </div>
+</div>
 
 <footer>
   <strong>Moving Out Sale - Mannheim</strong>
@@ -643,51 +748,57 @@ const items = [
     id:1, name:"Fridge", condition:"Very Good",
     date:"27.04.2026", actual:139, discount:135,
     emoji:"🧊", bg:"#d4eaf7", sold:false,
+    desc:"Single-door fridge, works perfectly. Clean inside and out. Approx. 150L capacity.",
     images:[],
-    // images: ["https://drive.google.com/uc?export=view&id=FILE_ID_1","https://drive.google.com/uc?export=view&id=FILE_ID_2"],
     pdf:""
-    // pdf: "https://drive.google.com/file/d/FILE_ID/view"
   },
   {
     id:2, name:"Vacuum Cleaner", condition:"Good",
     date:"28.04.2026", actual:35, discount:31,
     emoji:"🧹", bg:"#e8f5e9", sold:false,
+    desc:"Corded vacuum cleaner with all attachments included. Powerful suction, used regularly.",
     images:[], pdf:""
   },
   {
     id:3, name:"Sofa Set", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"🛋️", bg:"#fff3e0", sold:true,
+    desc:"3-seater fabric sofa, neutral colour. Minor wear on armrests. Comfortable and sturdy.",
     images:[], pdf:""
   },
   {
     id:4, name:"Computer Table", condition:"Very Good",
     date:"15.04.2026", actual:18, discount:16,
     emoji:"🖥️", bg:"#f3e5f5", sold:false,
+    desc:"Compact computer desk with keyboard tray and cable management. Easy to assemble.",
     images:[], pdf:""
   },
   {
     id:5, name:"2 Wooden Chair Set (A)", condition:"Good",
     date:"15.04.2026", actual:39, discount:35,
     emoji:"🪑", bg:"#fce4ec", sold:false,
+    desc:"Set of 2 solid wood dining chairs. Sturdy build, minimal scratches. Sold as a pair only.",
     images:[], pdf:""
   },
   {
     id:6, name:"2 Wooden Chair Set (B)", condition:"Good",
     date:"15.04.2026", actual:39, discount:35,
     emoji:"🪑", bg:"#fce4ec", sold:false,
+    desc:"Second set of 2 matching wooden chairs. Same style as Set A. Sold as a pair only.",
     images:[], pdf:""
   },
   {
     id:7, name:"TV", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"📺", bg:"#e8eaf6", sold:false,
+    desc:"32-inch LED TV, works great. Remote included. Wall mount bracket available separately.",
     images:[], pdf:""
   },
   {
     id:8, name:"Tri Cycle", condition:"Very Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"🚲", bg:"#e0f2f1", sold:false,
+    desc:"Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
     images:[], pdf:""
   },
 ];
@@ -751,6 +862,7 @@ function renderItems(){
         <div class="item-top">
           <div class="item-name">${item.name}</div>
           <div class="item-date-lbl">📅 From ${item.date}</div>
+          ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
           <div class="item-pricing">
             <div class="item-price" id="price-${item.id}">€${item.actual}</div>
             <div class="item-price-old" id="old-${item.id}">€${item.actual}</div>
@@ -800,8 +912,16 @@ function toggleItem(id){
   if (saleEnded) return;
   const item=items.find(i=>i.id===id);
   if(!item||item.sold) return;
-  selected.has(id)?selected.delete(id):selected.add(id);
+  const adding = !selected.has(id);
+  adding ? selected.add(id) : selected.delete(id);
   updateUI();
+  if(adding){
+    const cartBtn = document.getElementById('cartFloat');
+    cartBtn.classList.remove('cart-bounce');
+    void cartBtn.offsetWidth; // force reflow to restart animation
+    cartBtn.classList.add('cart-bounce');
+    cartBtn.addEventListener('animationend', () => cartBtn.classList.remove('cart-bounce'), {once:true});
+  }
 }
 
 // ── Confetti burst ──────────────────────────────────────────────
@@ -925,13 +1045,32 @@ function updateUI(){
   document.getElementById('calcNum').textContent=`${cnt} - €${finalTotal}`;
   document.getElementById('calcDate').textContent=pd?`📅 Pickup from: ${fmtDate(pd)}`:'\u00a0';
 
-  const box=document.getElementById('summaryBox');
+  // ── Cart badge & button ──
+  const badge=document.getElementById('cartBadge');
+  const cartBtn=document.getElementById('cartFloat');
   if(sel.length>0){
-    box.classList.add('on');
+    badge.textContent=sel.length;
+    badge.style.display='flex';
+    cartBtn.classList.add('has-items');
+  } else {
+    badge.style.display='none';
+    cartBtn.classList.remove('has-items');
+  }
+
+  // ── Cart sheet contents ──
+  const emptyMsg=document.getElementById('cartEmpty');
+  const cartContent=document.getElementById('cartContent');
+  if(sel.length>0){
+    emptyMsg.style.display='none';
+    cartContent.style.display='block';
     document.getElementById('sumList').innerHTML=sel.map(i=>{
       const dp=applyDisc?i.discount:i.actual;
-      const strike=(applyDisc&&i.actual!==i.discount)?` <small style="opacity:.5;text-decoration:line-through">€${i.actual}</small>`:'';
-      return `<li><span class="sn">${i.emoji} ${i.name} <small style="color:#666;font-size:.7em">· ${i.date}</small></span><span class="sp${applyDisc?' sv':''}">€${dp}${strike}</span></li>`;
+      const strike=(applyDisc&&i.actual!==i.discount)?` <small style="opacity:.5;text-decoration:line-through;color:#aab">€${i.actual}</small>`:'';
+      return `<li>
+        <span class="sn">${i.emoji} ${i.name} <small style="color:#aab;font-size:.7em">· ${i.date}</small></span>
+        <span class="sp${applyDisc?' sv':''}">€${dp}${strike}</span>
+        <button class="del-btn" onclick="removeFromCart(${i.id})" title="Remove">✕</button>
+      </li>`;
     }).join('');
     document.getElementById('pickupBox').innerHTML=
       `🚗 <strong>Self-pickup required.</strong> 🙋‍♂️ Please bring help for heavy items! Earliest pickup: <strong>${fmtDate(pd)}</strong>`+(sel.length>1?` <em style="opacity:.7">(latest item date)</em>`:'');
@@ -939,7 +1078,8 @@ function updateUI(){
     document.getElementById('sumFinal').textContent='€'+finalTotal;
     document.getElementById('sumSaved').textContent='€'+saved;
   } else {
-    box.classList.remove('on');
+    emptyMsg.style.display='block';
+    cartContent.style.display='none';
   }
 
   updateWAButtons();
@@ -1025,6 +1165,72 @@ document.querySelector('.cd-label').innerHTML =
 
 }
 
+// ── Cart Sheet ────────────────────────────────────────────────
+function openCartSheet(){
+  document.getElementById('cartSheet').classList.add('open');
+  document.getElementById('cartSheetOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCartSheet(){
+  document.getElementById('cartSheet').classList.remove('open');
+  document.getElementById('cartSheetOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function removeFromCart(id){
+  selected.delete(id);
+  updateUI();
+}
+
+// ── Cart button drag ──────────────────────────────────────────
+(function(){
+  const btn = document.getElementById('cartFloat');
+  let dragging = false, startX, startY, origLeft, origTop, moved = false;
+
+  function getPos(){
+    const r = btn.getBoundingClientRect();
+    return { left: r.left, top: r.top };
+  }
+
+  function onStart(e){
+    dragging = true; moved = false;
+    const pt = e.touches ? e.touches[0] : e;
+    startX = pt.clientX; startY = pt.clientY;
+    const pos = getPos();
+    origLeft = pos.left; origTop = pos.top;
+    btn.style.left = origLeft + 'px';
+    btn.style.top  = origTop  + 'px';
+    btn.style.transform = 'none';
+    btn.style.bottom = 'auto'; btn.style.right = 'auto';
+    e.preventDefault();
+  }
+
+  function onMove(e){
+    if(!dragging) return;
+    const pt = e.touches ? e.touches[0] : e;
+    const dx = pt.clientX - startX, dy = pt.clientY - startY;
+    if(Math.abs(dx)>4 || Math.abs(dy)>4) moved = true;
+    const maxL = window.innerWidth  - btn.offsetWidth;
+    const maxT = window.innerHeight - btn.offsetHeight;
+    btn.style.left = Math.min(Math.max(0, origLeft + dx), maxL) + 'px';
+    btn.style.top  = Math.min(Math.max(0, origTop  + dy), maxT) + 'px';
+    e.preventDefault();
+  }
+
+  function onEnd(e){
+    if(!dragging) return;
+    dragging = false;
+    if(!moved) openCartSheet();
+  }
+
+  btn.addEventListener('mousedown',  onStart, {passive:false});
+  btn.addEventListener('touchstart', onStart, {passive:false});
+  document.addEventListener('mousemove', onMove, {passive:false});
+  document.addEventListener('touchmove', onMove, {passive:false});
+  document.addEventListener('mouseup',  onEnd);
+  document.addEventListener('touchend', onEnd);
+})();
+
 // ── Bottom Sheet ────────────────────────────────────────────────
 function openSheet(){
   document.getElementById('bottomSheet').classList.add('open');
@@ -1037,7 +1243,7 @@ function closeSheet(){
   document.body.style.overflow='';
 }
 // Close with Escape key
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeSheet(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeSheet(); closeCartSheet(); } });
 
 </script>
 
