@@ -63,10 +63,27 @@ a { text-decoration:none; }
 .deadline-bar { background:#00004d; border-top:2px solid var(--amber); border-bottom:2px solid var(--amber); color:#ffd699; padding:9px 16px; text-align:center; font-size:0.8rem; font-weight:500; }
 .deadline-bar strong { color:var(--amber); font-size:0.86rem; }
 
-/* bright PDF button */
-.pdf-btn { display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg,#e53935,#c62828); border:none; color:#fff; border-radius:20px; padding:5px 12px; font-size:0.72rem; font-weight:700; cursor:pointer; transition:background .2s,box-shadow .2s,transform .15s; text-decoration:none; flex-shrink:0; box-shadow:0 2px 8px rgba(198,40,40,.4); letter-spacing:.3px; }
-.pdf-btn:hover { background:linear-gradient(135deg,#c62828,#b71c1c); box-shadow:0 4px 14px rgba(198,40,40,.55); transform:translateY(-1px); }
+/* View Details button */
+.pdf-btn { display:inline-flex; align-items:center; gap:5px; background:linear-gradient(135deg,#1565c0,#0d47a1); border:none; color:#fff; border-radius:20px; padding:5px 12px; font-size:0.72rem; font-weight:700; cursor:pointer; transition:background .2s,box-shadow .2s,transform .15s; text-decoration:none; flex-shrink:0; box-shadow:0 2px 8px rgba(13,71,161,.4); letter-spacing:.3px; }
+.pdf-btn:hover { background:linear-gradient(135deg,#0d47a1,#0a2d6e); box-shadow:0 4px 14px rgba(13,71,161,.55); transform:translateY(-1px); }
 .pdf-btn svg { width:12px; height:12px; flex-shrink:0; }
+
+/* ── LIGHTBOX ── */
+#lightbox { display:none; position:fixed; inset:0; z-index:10000; background:rgba(0,0,0,.92); flex-direction:column; align-items:center; justify-content:center; }
+#lightbox.open { display:flex; }
+#lb-img-wrap { position:relative; width:100%; max-width:740px; flex:1; display:flex; align-items:center; justify-content:center; padding:60px 16px 16px; }
+#lb-img { max-width:100%; max-height:70vh; border-radius:10px; object-fit:contain; box-shadow:0 8px 40px rgba(0,0,0,.7); display:block; transition:opacity .25s; }
+#lb-title { position:absolute; top:14px; left:50%; transform:translateX(-50%); color:#fff; font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; white-space:nowrap; letter-spacing:.5px; }
+#lb-counter { position:absolute; top:14px; right:16px; color:rgba(255,255,255,.65); font-size:0.75rem; }
+#lb-close { position:absolute; top:10px; left:14px; background:rgba(255,255,255,.12); border:none; color:#fff; font-size:1.3rem; width:34px; height:34px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; }
+#lb-close:hover { background:rgba(255,255,255,.25); }
+.lb-nav { position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.15); border:none; color:#fff; font-size:1.6rem; width:40px; height:40px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:background .2s; z-index:2; }
+.lb-nav:hover { background:rgba(255,255,255,.3); }
+#lb-prev { left:8px; }
+#lb-next { right:8px; }
+#lb-dots { display:flex; gap:6px; padding:10px 0 18px; justify-content:center; flex-shrink:0; flex-wrap:wrap; }
+#lb-dots .dot { width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.35); border:none; padding:0; cursor:pointer; transition:background .2s,transform .2s; }
+#lb-dots .dot.active { background:#FF9933; transform:scale(1.3); }
 
 /* ── SECTION WRAPPER ── */
 .page-wrap { max-width:860px; margin:0 auto; padding:0 14px; }
@@ -525,6 +542,19 @@ a.wa-float {
 <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <div id="lb-img-wrap">
+    <button id="lb-close" onclick="closeLightbox()" aria-label="Close">✕</button>
+    <div id="lb-title"></div>
+    <div id="lb-counter"></div>
+    <button class="lb-nav" id="lb-prev" onclick="lbMove(-1)" aria-label="Previous">‹</button>
+    <img id="lb-img" src="" alt="">
+    <button class="lb-nav" id="lb-next" onclick="lbMove(1)" aria-label="Next">›</button>
+  </div>
+  <div id="lb-dots"></div>
+</div>
+
 <canvas id="confetti-canvas"></canvas>
 
 <!-- HERO -->
@@ -750,57 +780,60 @@ const items = [
     date:"27.04.2026", actual:139, discount:135,
     emoji:"🧊", bg:"#d4eaf7", sold:false,
     desc:"Single-door fridge, works perfectly. Clean inside and out. Approx. 150L capacity.",
-    images:[],
-    pdf:""
+    images:["https://image2url.com/r2/default/images/1774822990895-526f03e8-923c-4dad-8c77-7d55388bf6b7.jpg"],
+    viewImages:[]
   },
   {
     id:2, name:"Vacuum Cleaner", condition:"Good",
     date:"28.04.2026", actual:35, discount:31,
     emoji:"🧹", bg:"#e8f5e9", sold:false,
     desc:"Corded vacuum cleaner with all attachments included. Powerful suction, used regularly.",
-    images:[], pdf:""
+    images:[], viewImages:[]
   },
   {
     id:3, name:"Sofa Set", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"🛋️", bg:"#fff3e0", sold:true,
     desc:"3-seater fabric sofa, neutral colour. Minor wear on armrests. Comfortable and sturdy.",
-    images:[], pdf:""
+    images:[], viewImages:[]
   },
   {
     id:4, name:"Computer Table", condition:"Very Good",
     date:"15.04.2026", actual:18, discount:16,
     emoji:"🖥️", bg:"#f3e5f5", sold:false,
     desc:"Compact computer desk with keyboard tray and cable management. Easy to assemble.",
-    images:[], pdf:""
+    images:[], viewImages:[]
   },
   {
     id:5, name:"2 Wooden Chair Set (A)", condition:"Good",
     date:"15.04.2026", actual:39, discount:35,
     emoji:"🪑", bg:"#fce4ec", sold:false,
     desc:"Set of 2 solid wood dining chairs. Sturdy build, minimal scratches. Sold as a pair only.",
-    images:[], pdf:""
+    images:["https://www.shutterstock.com/image-vector/kids-drawing-vector-illustration-wooden-600nw-2528302687.jpg"],
+    viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"]
   },
   {
     id:6, name:"2 Wooden Chair Set (B)", condition:"Good",
     date:"15.04.2026", actual:39, discount:35,
     emoji:"🪑", bg:"#fce4ec", sold:false,
     desc:"Second set of 2 matching wooden chairs. Same style as Set A. Sold as a pair only.",
-    images:[], pdf:""
+    images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"],
+    viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png",
+    "https://www.shutterstock.com/image-vector/kids-drawing-vector-illustration-wooden-600nw-2528302687.jpg"]
   },
   {
     id:7, name:"TV", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"📺", bg:"#e8eaf6", sold:false,
     desc:"32-inch LED TV, works great. Remote included. Wall mount bracket available separately.",
-    images:[], pdf:""
+    images:[], viewImages:[]
   },
   {
     id:8, name:"Tri Cycle", condition:"Very Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"🚲", bg:"#e0f2f1", sold:false,
     desc:"Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
-    images:[], pdf:""
+    images:[], viewImages:[]
   },
 ];
 // ═══════════════════════════════════════════════════════════════
@@ -843,11 +876,12 @@ function renderItems(){
     const soldHtml = item.sold ? `<div class="sold-overlay"><div class="sold-stamp">SOLD</div></div>` : '';
     const condClass = item.condition==='Very Good'?'vg':'gd';
 
-    const pdfHtml = item.pdf ? `
-      <a href="${item.pdf}" target="_blank" class="pdf-btn" onclick="event.stopPropagation()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+    const viewImgs = item.viewImages && item.viewImages.length ? item.viewImages : (hasImgs ? imgs : []);
+    const pdfHtml = viewImgs.length ? `
+      <button class="pdf-btn" onclick="event.stopPropagation();openLightbox(${item.id})">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         View Details
-      </a>` : '';
+      </button>` : '';
 
     const selLabel = selected.has(item.id) ? '✓ Selected' : '+ Select';
 
@@ -1243,9 +1277,80 @@ function closeSheet(){
   document.getElementById('sheetOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
-// Close with Escape key
-document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeSheet(); closeCartSheet(); } });
+// ── Lightbox ────────────────────────────────────────────────────
+let lbImages = [], lbIdx = 0, lbTitle = '';
 
+function openLightbox(itemId){
+  const item = items.find(i => i.id === itemId);
+  if(!item) return;
+  const imgs = (item.viewImages && item.viewImages.length)
+    ? item.viewImages
+    : (item.images && item.images.length ? item.images : []);
+  if(!imgs.length) return;
+  lbImages = imgs;
+  lbTitle  = item.name;
+  lbIdx    = 0;
+  lbRender();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function lbMove(dir){
+  lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+  lbRender();
+}
+
+function lbRender(){
+  const img = document.getElementById('lb-img');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = lbImages[lbIdx];
+    img.alt = lbTitle + ' ' + (lbIdx+1);
+    img.style.opacity = '1';
+  }, 120);
+  document.getElementById('lb-title').textContent = lbTitle;
+  document.getElementById('lb-counter').textContent =
+    lbImages.length > 1 ? `${lbIdx+1} / ${lbImages.length}` : '';
+
+  // nav visibility
+  const show = lbImages.length > 1;
+  document.getElementById('lb-prev').style.display = show ? 'flex' : 'none';
+  document.getElementById('lb-next').style.display = show ? 'flex' : 'none';
+
+  // dots
+  const dotsEl = document.getElementById('lb-dots');
+  dotsEl.innerHTML = lbImages.length > 1
+    ? lbImages.map((_,i) =>
+        `<button class="dot${i===lbIdx?' active':''}" onclick="lbIdx=${i};lbRender()"></button>`
+      ).join('') : '';
+}
+
+// lightbox swipe
+(function(){
+  let sx = 0;
+  const lb = document.getElementById('lightbox');
+  lb.addEventListener('touchstart', e=>{ sx = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e=>{
+    const dx = sx - e.changedTouches[0].clientX;
+    if(Math.abs(dx) > 40) lbMove(dx > 0 ? 1 : -1);
+  }, {passive:true});
+  // close on backdrop click
+  lb.addEventListener('click', e=>{ if(e.target === lb) closeLightbox(); });
+})();
+
+// Close lightbox with Escape
+document.addEventListener('keydown', e=>{
+  if(e.key==='Escape'){ closeLightbox(); closeSheet(); closeCartSheet(); }
+  if(e.key==='ArrowLeft')  lbMove(-1);
+  if(e.key==='ArrowRight') lbMove(1);
+});
+
+// ── Bottom Sheet ────────────────────────────────────────────────
 </script>
 
 <!--
@@ -1278,15 +1383,20 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape'){ closeSheet(); cl
        "https://drive.google.com/uc?export=view&id=ID2"
      ]
 
-── ADD PDF "VIEW DETAILS" BUTTON ────────────────────────────────────
-  1. Upload PDF to Google Drive
-  2. Share → "Anyone with the link"
-  3. Copy the share link (keep it as-is, e.g.):
-        https://drive.google.com/file/d/FILE_ID/view
-  4. Paste into the item's pdf field:
-        pdf: "https://drive.google.com/file/d/FILE_ID/view"
-  The "View Details" button will appear on the item card.
-  Leave  pdf: ""  to hide the button.
+── ADD "VIEW DETAILS" BUTTON (image slideshow popup) ────────────────
+  The button appears when viewImages (or images) is non-empty.
+  Clicking it opens a full-screen image slideshow popup.
+
+  Option A — reuse the same photos as the thumbnail:
+    Fill images: ["url1","url2"] and leave viewImages: []
+    The button will automatically use those images.
+
+  Option B — separate photos just for the popup:
+    viewImages: [
+      "https://drive.google.com/uc?export=view&id=ID1",
+      "https://drive.google.com/uc?export=view&id=ID2"
+    ]
+  To HIDE the button: keep both images and viewImages empty [].
 
 ── GOOGLE SHEETS SOLD CONTROL (optional) ────────────────────────────
   1. Sheet columns: id | sold  (e.g. 1 | TRUE)
