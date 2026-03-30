@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,7 +138,7 @@ a { text-decoration:none; }
   border-radius:var(--card-radius); overflow:hidden;
   border:2px solid transparent;
   transition:border-color .22s, box-shadow .22s;
-  margin-bottom:12px; cursor:pointer; position:relative;
+  margin-bottom:12px; cursor:default; position:relative;
 }
 .item-row:hover:not(.sold) { box-shadow:0 6px 24px rgba(0,0,0,.09); }
 .item-row.selected { border-color:var(--amber); box-shadow:0 0 0 3px rgba(255,153,51,.2); }
@@ -180,10 +181,28 @@ a { text-decoration:none; }
 .item-price.disc { color:var(--green); }
 .item-price-old { font-size:0.78rem; color:var(--muted); text-decoration:line-through; display:none; }
 .item-price-old.on { display:inline; }
+/* FREE item styling */
+.item-price.free {
+  color: #138808;
+  font-weight: 900;
+}
+
+.item-row.free-item {
+  border: 2px dashed #138808;
+  background: #f1fff3;
+}
 .item-actions { display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
 .sel-btn { display:flex; align-items:center; gap:5px; background:var(--charcoal); color:#fff; border:none; border-radius:20px; padding:5px 13px; font-size:0.72rem; font-weight:600; cursor:pointer; transition:background .2s; flex-shrink:0; }
 .sel-btn:hover { background:#333; }
 .item-row.selected .sel-btn { background:var(--amber); }
+
+/* ── SORT BAR ── */
+.sort-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:10px 0 4px; }
+.sort-lbl { font-size:0.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); flex-shrink:0; }
+.sort-btn { display:inline-flex; align-items:center; gap:4px; background:var(--warm-white); border:1.5px solid var(--light-brown); color:var(--charcoal); border-radius:20px; padding:5px 12px; font-size:0.74rem; font-weight:600; cursor:pointer; transition:border-color .18s, background .18s, color .18s; flex-shrink:0; }
+.sort-btn:hover { border-color:var(--amber); }
+.sort-btn.active { background:var(--charcoal); color:#fff; border-color:var(--charcoal); }
+.sort-btn .sort-arrow { font-size:0.65rem; opacity:.75; }
 
 /* ── SUMMARY BOX ── */
 .summary-wrap { margin:18px 0 4px; }
@@ -684,6 +703,14 @@ a.wa-float {
 </div>
 
 <div class="page-wrap">
+  <!-- SORT BAR -->
+  <div class="sort-bar">
+    <span class="sort-lbl">Sort by:</span>
+    <button class="sort-btn" id="sort-price" onclick="setSort('price')">Price <span class="sort-arrow" id="arr-price"></span></button>
+    <button class="sort-btn" id="sort-date" onclick="setSort('date')">Available Date <span class="sort-arrow" id="arr-date"></span></button>
+    <button class="sort-btn" id="sort-condition" onclick="setSort('condition')">Condition <span class="sort-arrow" id="arr-condition"></span></button>
+    <button class="sort-btn" id="sort-none" onclick="setSort('none')" style="opacity:.65">Default</button>
+  </div>
   <div class="items-list" id="itemsList"></div>
 </div><!-- /page-wrap -->
 
@@ -830,7 +857,7 @@ const items = [
   },
   {
     id:8, name:"Tri Cycle", condition:"Very Good",
-    date:"15.04.2026", actual:59, discount:56,
+    date:"15.04.2026", actual:0, discount:0,
     emoji:"🚲", bg:"#e0f2f1", sold:false,
     desc:"Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
     images:[], viewImages:[]
@@ -855,7 +882,7 @@ function toggleAcc(id){
 }
 
 function renderItems(){
-  document.getElementById('itemsList').innerHTML = items.map(item => {
+  document.getElementById('itemsList').innerHTML = getSortedItems().map(item => {
     slideIdx[item.id] = slideIdx[item.id]||0;
     const imgs = item.images||[];
     const hasImgs = imgs.length>0;
@@ -886,7 +913,7 @@ function renderItems(){
     const selLabel = selected.has(item.id) ? '✓ Selected' : '+ Select';
 
     return `
-    <div class="item-row${item.sold?' sold':''}" id="row-${item.id}" onclick="${item.sold?'void(0)':`toggleItem(${item.id})`}">
+    <div class="item-row ${item.sold ? 'sold' : ''} ${item.actual === 0 ? 'free-item' : ''}">
       <div class="item-thumb" style="background:${item.bg}">
         <div class="slides-track" id="track-${item.id}">${slidesHtml}</div>
         ${arrowHtml}${dotsHtml}${cntHtml}
@@ -899,7 +926,9 @@ function renderItems(){
           <div class="item-date-lbl">📅 From ${item.date}</div>
           ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
           <div class="item-pricing">
-            <div class="item-price" id="price-${item.id}">€${item.actual}</div>
+            <div class="item-price ${item.actual === 0 ? 'free' : ''}" id="price-${item.id}">
+  ${item.actual === 0 ? 'FREE' : '€' + item.actual}
+</div>
             <div class="item-price-old" id="old-${item.id}">€${item.actual}</div>
           </div>
         </div>
@@ -1051,7 +1080,7 @@ function updateUI(){
     row.classList.toggle('selected',isSel);
     if(lbl) lbl.textContent = isSel ? '✓ Selected' : '+ Select';
     if(applyDisc){
-      priceEl.textContent='€'+item.discount;
+      priceEl.textContent = item.actual === 0 ? 'FREE' : '€' + item.discount;
       priceEl.classList.add('disc');
       oldEl.textContent='€'+item.actual;
       oldEl.classList.add('on');
@@ -1120,9 +1149,48 @@ function updateUI(){
   updateWAButtons();
 }
 
+// ── Sort ───────────────────────────────────────────────────────
+let sortKey = 'none', sortDir = 1; // 1 = asc, -1 = desc
+
+function setSort(key){
+  if(sortKey === key && key !== 'none'){
+    sortDir *= -1; // toggle direction
+  } else {
+    sortKey = key;
+    sortDir = 1;
+  }
+  // Update button styles
+  ['price','date','condition','none'].forEach(k => {
+    const btn = document.getElementById('sort-'+k);
+    if(btn) btn.classList.toggle('active', k === sortKey);
+  });
+  // Update arrows
+  ['price','date','condition'].forEach(k => {
+    const arr = document.getElementById('arr-'+k);
+    if(!arr) return;
+    if(k !== sortKey){ arr.textContent = ''; return; }
+    arr.textContent = sortDir === 1 ? '▲' : '▼';
+  });
+  renderItems();
+}
+
+function getSortedItems(){
+  if(sortKey === 'none') return [...items];
+  return [...items].sort((a, b) => {
+    let va, vb;
+    if(sortKey === 'price'){
+      va = a.actual; vb = b.actual;
+    } else if(sortKey === 'date'){
+      va = parseDate(a.date).getTime(); vb = parseDate(b.date).getTime();
+    } else if(sortKey === 'condition'){
+      const rank = {'Very Good':0,'Good':1};
+      va = rank[a.condition] ?? 99; vb = rank[b.condition] ?? 99;
+    }
+    return (va - vb) * sortDir;
+  });
+}
+
 renderItems();
-
-
 
 
 
