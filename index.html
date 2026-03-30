@@ -166,6 +166,7 @@ a { text-decoration:none; }
 
 /* condition pill on thumb */
 .cond-pill { position:absolute; top:5px; left:5px; font-size:0.58rem; font-weight:700; letter-spacing:.8px; text-transform:uppercase; padding:2px 7px; border-radius:10px; z-index:4; }
+.cond-pill.ex { background:#fff3cd; color:#856404; }
 .cond-pill.vg { background:#d4edda; color:#155724; }
 .cond-pill.gd { background:#cce5ff; color:#004085; }
 
@@ -185,7 +186,8 @@ a { text-decoration:none; }
 .sel-btn:hover { background:#333; }
 .item-row.selected .sel-btn { background:var(--amber); }
 
-/* ── SORT BAR ── */
+.item-price.giveaway { color: #138808; font-size: 0.95rem; font-weight: 800; }
+.giveaway-pill { display:inline-block; background:linear-gradient(135deg,#138808,#0d6606); color:#fff; font-size:0.62rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:10px; margin-left:5px; vertical-align:middle; }
 .sort-bar { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:10px 0 4px; }
 .sort-lbl { font-size:0.72rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--muted); flex-shrink:0; }
 .sort-btn { display:inline-flex; align-items:center; gap:4px; background:var(--warm-white); border:1.5px solid var(--light-brown); color:var(--charcoal); border-radius:20px; padding:5px 12px; font-size:0.74rem; font-weight:600; cursor:pointer; transition:border-color .18s, background .18s, color .18s; flex-shrink:0; }
@@ -543,7 +545,7 @@ a.wa-float {
 <body>
 
 
-<a href="https://wa.me/919831803076?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!"
+<a href="https://wa.me/4915237049787?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!"
    class="wa-btn wa-dynamic wa-float"
    target="_blank">
 
@@ -599,7 +601,8 @@ a.wa-float {
       <span>📍Mannheim, Germany</span>
       <span>🛗 Elevator Access Available</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
-      <span>🎁 Attractive Offers available - tap ℹ️ to know more!</span>
+      <span>🎉 Attractive Offers available - tap ℹ️ to know more!</span>
+      <span>🎁 Some items are FREE - marked as Give Away!</span>
       <span>🆕 New items being added - check back soon!</span>
       <span></span>
     </div>
@@ -613,7 +616,8 @@ a.wa-float {
       <span>📍Mannheim, Germany</span>
       <span>🛗 Elevator Access Available</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
-      <span>🎁 Attractive Offers available - tap ℹ️ to know more!</span>
+      <span>🎉 Attractive Offers available - tap ℹ️ to know more!</span>
+      <span>🎁 Some items are FREE - marked as Give Away!</span>
       <span>🆕 New items being added - check back soon!</span>
       <span></span>
     </div>
@@ -655,7 +659,7 @@ a.wa-float {
 <!-- BOTTOM SHEET -->
 <div class="bottom-sheet" id="bottomSheet">
   <div class="sheet-handle-wrap">
-    <div class="sheet-title">🎁 Special Offers &amp; Rules</div>
+    <div class="sheet-title">📢 Special Offers &amp; Rules</div>
     <button class="sheet-close" onclick="closeSheet()">✕</button>
   </div>
   <div class="offers-grid" style="padding:16px;">
@@ -676,6 +680,12 @@ a.wa-float {
       <div class="offer-pill">POLICY</div>
       <h3>Reservation Policy</h3>
       <p>Items are <strong>only held if prepaid</strong>. Without prepayment it's first come, first served. No exceptions.</p>
+    </div>
+    <div class="offer-card oc3">
+      <div class="offer-icon">🆓</div>
+      <div class="offer-pill">FREE</div>
+      <h3>Give Away Items</h3>
+      <p>Some items are available completely <strong>free of charge</strong>! Marked as "Give Away" (€0). Just arrange self-pickup - first come, first served.</p>
     </div>
     <div class="offer-card oc4">
       <div class="offer-icon">⚡</div>
@@ -741,7 +751,7 @@ a.wa-float {
       </div>
       <div class="sum-cta">
         <p>💬 Tap <strong>Book Now</strong> - your items &amp; total are pre-filled in WhatsApp. <strong><br>💰 Items held only if prepaid.</strong></p>
-        <a id="waBtnSummary" href="https://wa.me/919831803076?text=Hello%2C%20I%20want%20to%20buy%20some%20items%20from%20your%20Mannheim%20moving%20sale!" class="wa-btn wa-dynamic" target="_blank" style="padding:10px 20px;font-size:0.85rem;">
+        <a id="waBtnSummary" href="https://wa.me/4915237049787?text=Hello%2C%20I%20want%20to%20buy%20some%20items%20from%20your%20Mannheim%20moving%20sale!" class="wa-btn wa-dynamic" target="_blank" style="padding:10px 20px;font-size:0.85rem;">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:16px;height:16px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Book Now
         </a>
@@ -753,11 +763,11 @@ a.wa-float {
 
 <footer>
   <strong>Moving Out Sale - Mannheim</strong>
-  <p>💬 WhatsApp only : +91 9831 8030 76 &nbsp;·&nbsp; 🚗 Self-pickup<br>
+  <p>💬 WhatsApp only : +49 15237049787 &nbsp;·&nbsp; 🚗 Self-pickup<br>
   🔒 Held only if prepaid · otherwise first come, first served<br>
   📅 Pickup not before item's available date</p>
-<br><hr>
-  ©️ 2026 Sanjib Kumar Dutta<br><br><img src="icon.png" width="100" style="float:centre">
+<br><hr><br>
+  ©️ 2026 Sanjib Kumar Dutta<br><img src="icon.png" width="100" style="float:centre">
   <br><br>
   <div id="visit-counter" style="font-size:0.78rem;color:#aac;margin-top:6px;">
     👁 Site Visits: <span id="visit-count" style="color:var(--amber);font-weight:700;">-</span>
@@ -916,7 +926,7 @@ function renderItems(){
 
     const cntHtml = total>1 ? `<div class="photo-count" id="pc-${item.id}">1/${total}</div>` : '';
     const soldHtml = item.sold ? `<div class="sold-overlay"><div class="sold-stamp">SOLD</div></div>` : '';
-    const condClass = item.condition==='Very Good'?'vg':'gd';
+    const condClass = item.condition==='Excellent'?'ex': item.condition==='Very Good'?'vg':'gd';
 
     const viewImgs = item.viewImages && item.viewImages.length ? item.viewImages : (hasImgs ? imgs : []);
     const pdfHtml = viewImgs.length ? `
@@ -941,7 +951,7 @@ function renderItems(){
           <div class="item-date-lbl">📅 From ${item.date}</div>
           ${item.desc ? `<div class="item-desc">${item.desc}</div>` : ''}
           <div class="item-pricing">
-            <div class="item-price" id="price-${item.id}">€${item.actual}</div>
+            <div class="item-price${item.actual===0?' giveaway':''}" id="price-${item.id}">${item.actual===0?'🎁 Give Away':'€'+item.actual}</div>
             <div class="item-price-old" id="old-${item.id}">€${item.actual}</div>
           </div>
         </div>
@@ -1049,13 +1059,13 @@ function buildWALink(){
   let msg='Hello! I am interested in the following items from your Mannheim moving sale:\n\n';
   sel.forEach(i=>{
     const p=applyDisc?i.discount:i.actual;
-    msg+=`• ${i.name} - €${p}\n`;
+    msg+=`• ${i.name} - ${p===0?'Give Away (Free)':'€'+p}\n`;
   });
   msg+=`\nTotal: €${finalTotal}`;
   if(applyDisc) msg+=` (bundle discount applied ✅)`;
   if(pd) msg+=`\nPickup from: ${fmtDate(pd)}`;
   msg+='\n\nPlease confirm availability. I will arrange self-pickup.';
-  return 'https://wa.me/919831803076?text='+encodeURIComponent(msg);
+  return 'https://wa.me/4915237049787?text='+encodeURIComponent(msg);
 }
 
 function updateWAButtons(){
@@ -1069,7 +1079,7 @@ function updateWAButtons(){
       btn.href=buildWALink();
       if(!btn.classList.contains('wa-float')) btn.style.background='#128C7E';
     } else {
-      btn.href='https://wa.me/919831803076?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!';
+      btn.href='https://wa.me/4915237049787?text=Hello%2C%20I%20saw%20your%20moving%20sale%20in%20Mannheim%20and%20I%27m%20interested!';
       if(!btn.classList.contains('wa-float')) btn.style.background='';
     }
   });
@@ -1093,13 +1103,15 @@ function updateUI(){
     row.classList.toggle('selected',isSel);
     if(lbl) lbl.textContent = isSel ? '✓ Selected' : '+ Select';
     if(applyDisc){
-      priceEl.textContent='€'+item.discount;
-      priceEl.classList.add('disc');
+      priceEl.textContent= item.discount===0 ? '🎁 Give Away' : '€'+item.discount;
+      priceEl.classList.toggle('disc', item.discount>0);
+      priceEl.classList.toggle('giveaway', item.discount===0);
       oldEl.textContent='€'+item.actual;
-      oldEl.classList.add('on');
+      oldEl.classList.toggle('on', item.actual!==0);
     } else {
-      priceEl.textContent='€'+item.actual;
+      priceEl.textContent= item.actual===0 ? '🎁 Give Away' : '€'+item.actual;
       priceEl.classList.remove('disc');
+      priceEl.classList.toggle('giveaway', item.actual===0);
       oldEl.classList.remove('on');
     }
   });
@@ -1142,10 +1154,10 @@ function updateUI(){
     cartContent.style.display='block';
     document.getElementById('sumList').innerHTML=sel.map(i=>{
       const dp=applyDisc?i.discount:i.actual;
-      const strike=(applyDisc&&i.actual!==i.discount)?` <small style="opacity:.5;text-decoration:line-through;color:#aab">€${i.actual}</small>`:'';
+      const strike=(applyDisc&&i.actual!==i.discount&&i.actual!==0)?` <small style="opacity:.5;text-decoration:line-through;color:#aab">€${i.actual}</small>`:'';
       return `<li>
         <span class="sn">${i.emoji} ${i.name} <small style="color:#aab;font-size:.7em">· ${i.date}</small></span>
-        <span class="sp${applyDisc?' sv':''}">€${dp}${strike}</span>
+        <span class="sp${applyDisc?' sv':''}">  ${dp===0?'<span style="color:#4CAF50;font-weight:700">Give Away</span>':'€'+dp}${strike}</span>
         <button class="del-btn" onclick="removeFromCart(${i.id})" title="Remove">✕</button>
       </li>`;
     }).join('');
@@ -1258,7 +1270,7 @@ function disableSale() {
   });
 
  document.querySelectorAll('.wa-dynamic').forEach(btn => {
-  btn.href = "https://wa.me/919831803076?text=Hello%2C%20is%20anything%20still%20available%20from%20your%20moving%20sale%3F";
+  btn.href = "https://wa.me/4915237049787?text=Hello%2C%20is%20anything%20still%20available%20from%20your%20moving%20sale%3F";
   btn.style.background = "#25D366";
 
   // change button text safely (without breaking SVG)
