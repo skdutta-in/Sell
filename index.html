@@ -770,7 +770,7 @@ a.wa-float {
       <div class="offer-pill">BONUS</div>
       <h3>Quick Confirm Deal</h3>
       <p>Confirm &amp; prepay within 24 hrs <strong>from the item's available date</strong> → get an extra <strong>€5 off</strong>. Fast buyers rewarded!</p>
-      <p>* Not applicable for items with a total value below €10 or for giveaway items.</p>
+      <p>* Not applicable for items with a total value below €25 or for giveaway items.</p>
     </div>
   </div>
 </div>
@@ -912,6 +912,15 @@ const items = [
     viewImages:["https://image2url.com/r2/default/images/1774880064255-4609950f-edfb-4e80-bde8-5607380122a9.png",
                "https://image2url.com/r2/default/images/1774880203923-cce440e7-a919-4c69-8b54-ed3a171a7247.png"]
   },
+    {
+    id:4, name:"Narrow Office Desk", condition:"Excellent",
+    date:"15.04.2026", actual:19, discount:17,
+    emoji:"🖥️", bg:"#f3e5f5", sold:false,
+    desc:"Writing Desk, Computer Desk, Narrow Office Desk, Study, Home Office, 140 x 60 x 75 cm, Vintage Brown/Black.",
+    images:["https://m.media-amazon.com/images/I/71nAV-6UjyL._AC_SX679_.jpg"],
+    viewImages:["https://m.media-amazon.com/images/I/71nAV-6UjyL._AC_SX679_.jpg",
+                 "https://m.media-amazon.com/images/I/81rxGldTv-L._AC_SX679_.jpg"]
+  },
 
   {
     id:5, name:"2 Chair Set (A)", condition:"Good",
@@ -930,7 +939,7 @@ const items = [
     viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"]
   },
   {
-    id:9, name:"Table Fan (30cm)", condition:"Excellent",
+    id:8, name:"Table Fan (30cm)", condition:"Excellent",
     date:"15.04.2026", actual:19, discount:17,
     emoji:"🌀", bg:"#e0f2f1", sold:false,
     desc:"Brandson 30 cm Table Fan with 3 Power Levels, Oscillating Desk Fan, Small and Quiet, Silver, black.",
@@ -938,6 +947,16 @@ const items = [
     viewImages:["https://m.media-amazon.com/images/I/91-6rdx+fdL._AC_SL1500_.jpg",
                "https://m.media-amazon.com/images/I/915AWg8O4XL._AC_SL1500_.jpg",
                "https://m.media-amazon.com/images/I/91yCO-YRCFL._AC_SL1500_.jpg"]
+  },
+  {
+    id:8, name:"JUSKYS Modern Style Bed", condition:"Good",
+    date:"28.04.2026", actual:0, discount:0,
+    emoji:"🛏️", bg:"#e0f2f1", sold:false,
+    desc:"Elegant upholstered bed BLACK in 180 x 200 cm with LED lighting, slatted frame and headboard. Comfortable double bed for 2 persons.",
+    images:["https://m.media-amazon.com/images/I/61PxDrptLnL._AC_SL1500_.jpg"],
+    viewImages:["https://m.media-amazon.com/images/I/61PxDrptLnL._AC_SL1500_.jpg",
+                "https://m.media-amazon.com/images/I/71zSGq70oUL._AC_SL1500_.jpg",
+               "https://m.media-amazon.com/images/I/71KA7K4OQjL._AC_SL1500_.jpg"]
   },
     {
     id:10, name:"Artificial Christmas Tree", condition:"Good",
@@ -959,22 +978,16 @@ const items = [
 // ═══════════════════════════════════════════════════════════════
 const upcomingItems = [
   {
-    id: 2,
-    name: "Single Bed Frame",
-    emoji: "🛏️",
-    desc: "Sturdy metal bed frame, single size. Easy to disassemble. Details & photos being added soon."
-  },
-  {
     id: 1,
     name: "Color TV",
     emoji: "📺",
     desc: "panasonic Color TV in Good working condition."
   },
   {
-    id: 3,
-    name: "Computer Table",
-    emoji: "🖥️",
-    desc: "Compact computer desk with keyboard tray and cable management. Easy to assemble."
+    id: 2,
+    name: "Bluetooth Speaker",
+    emoji: "🔊",
+    desc: "LFS Bluetooth Speaker IPX7 Waterproof, Portable Bluetooth Box, Improved Bass, Stereo Pairing, Wireless Speaker for Outdoors, Travel, Home, Shower, 20 Watts."
   },
     {
     id: 4,
@@ -1649,13 +1662,7 @@ document.addEventListener('keydown', e=>{
     images:[], viewImages:[]
   },
 
-  {
-    id:4, name:"Computer Table", condition:"Excellent",
-    date:"15.04.2026", actual:18, discount:16,
-    emoji:"🖥️", bg:"#f3e5f5", sold:false,
-    desc:"Compact computer desk with keyboard tray and cable management. Easy to assemble.",
-    images:[], viewImages:[]
-  },
+
 
 
   {
@@ -1672,6 +1679,7 @@ document.addEventListener('keydown', e=>{
     desc:"Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
     images:[], viewImages:[]
   },
+
 
 
 
