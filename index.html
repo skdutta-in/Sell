@@ -904,13 +904,6 @@ const items = [
                "https://m.media-amazon.com/images/I/71smPjQeeBL._AC_SY741_.jpg"]
   },
   {
-    id:2, name:"Vacuum Cleaner", condition:"Very Good",
-    date:"28.04.2026", actual:35, discount:31,
-    emoji:"🧹", bg:"#e8f5e9", sold:false,
-    desc:"Corded vacuum cleaner with all attachments included. Powerful suction, used regularly.",
-    images:[], viewImages:[]
-  },
-  {
     id:3, name:"Leather Sofa - White", condition:"Good",
     date:"15.04.2026", actual:59, discount:56,
     emoji:"🛋️", bg:"#fff3e0", sold:false,
@@ -919,13 +912,7 @@ const items = [
     viewImages:["https://image2url.com/r2/default/images/1774880064255-4609950f-edfb-4e80-bde8-5607380122a9.png",
                "https://image2url.com/r2/default/images/1774880203923-cce440e7-a919-4c69-8b54-ed3a171a7247.png"]
   },
-  {
-    id:4, name:"Computer Table", condition:"Excellent",
-    date:"15.04.2026", actual:18, discount:16,
-    emoji:"🖥️", bg:"#f3e5f5", sold:false,
-    desc:"Compact computer desk with keyboard tray and cable management. Easy to assemble.",
-    images:[], viewImages:[]
-  },
+
   {
     id:5, name:"2 Wooden Chair Set (A)", condition:"Good",
     date:"15.04.2026", actual:39, discount:35,
@@ -941,20 +928,6 @@ const items = [
     desc:"Second set of 2 solid wood chairs. Sturdy build, Sold as a pair only.",
     images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"],
     viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"]
-  },
-  {
-    id:7, name:"TV", condition:"Good",
-    date:"15.04.2026", actual:59, discount:56,
-    emoji:"📺", bg:"#e8eaf6", sold:false,
-    desc:"32-inch LED TV, works great. Remote included. Wall mount bracket available separately.",
-    images:[], viewImages:[]
-  },
-  {
-    id:8, name:"Tri Cycle", condition:"Excellent",
-    date:"15.04.2026", actual:59, discount:56,
-    emoji:"🚲", bg:"#e0f2f1", sold:false,
-    desc:"Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
-    images:[], viewImages:[]
   },
   {
     id:9, name:"Table Fan (30cm)", condition:"Excellent",
@@ -993,24 +966,25 @@ const upcomingItems = [
   },
   {
     id: 1,
-    name: "Indoor Plants",
-    emoji: "🪴",
-    desc: "Assorted indoor potted plants in good health. Some with decorative pots. Free or low cost - details coming soon."
+    name: "Color TV",
+    emoji: "📺",
+    desc: "panasonic Color TV in Good working condition."
   },
   {
     id: 3,
-    name: "More Items To Be Listed",
-    emoji: "📦",
-    desc: "More household items being photographed and priced. Check back soon or message us on WhatsApp to stay updated!"
+    name: "Computer Table",
+    emoji: "🖥️",
+    desc: "Compact computer desk with keyboard tray and cable management. Easy to assemble."
   },
     {
     id: 4,
-    name: "This is 4th item",
-    emoji: "📦",
-    desc: "More household items being photographed and priced. Check back soon or message us on WhatsApp to stay updated!"
+    name: "Vaccum Cleaner",
+    emoji: "🧹",
+    desc: "Corded vacuum cleaner with all attachments included. Powerful suction, used regularly."
   },
 ];
 // ═══════════════════════════════════════════════════════════════
+
 
 function renderUpcoming() {
   const grid = document.getElementById('upcomingGrid');
@@ -1353,7 +1327,7 @@ function getSortedItems(){
     } else if(sortKey === 'date'){
       va = parseDate(a.date).getTime(); vb = parseDate(b.date).getTime();
     } else if(sortKey === 'condition'){
-      const rank = {'Very Good':0,'Good':1};
+      const rank = {'Excellent':0,'Very Good':1,'Good':2};
       va = rank[a.condition] ?? 99; vb = rank[b.condition] ?? 99;
     }
     return (va - vb) * sortDir;
@@ -1665,14 +1639,39 @@ document.addEventListener('keydown', e=>{
   • GitHub Pages : upload to repo, enable Pages in settings
   Share the URL on WhatsApp status or local Facebook groups!
 
+-------- PRODUCT INFORMATION------
+
+  {
+    id:2, name:"Vacuum Cleaner", condition:"Very Good",
+    date:"28.04.2026", actual:35, discount:31,
+    emoji:"🧹", bg:"#e8f5e9", sold:false,
+    desc:"Corded vacuum cleaner with all attachments included. Powerful suction, used regularly.",
+    images:[], viewImages:[]
+  },
+
+  {
+    id:4, name:"Computer Table", condition:"Excellent",
+    date:"15.04.2026", actual:18, discount:16,
+    emoji:"🖥️", bg:"#f3e5f5", sold:false,
+    desc:"Compact computer desk with keyboard tray and cable management. Easy to assemble.",
+    images:[], viewImages:[]
+  },
 
 
-
-
-
-
-
-
+  {
+    id:7, name:"TV", condition:"Good",
+    date:"15.04.2026", actual:59, discount:56,
+    emoji:"📺", bg:"#e8eaf6", sold:false,
+    desc:"32-inch LED TV, works great. Remote included. Wall mount bracket available separately.",
+    images:[], viewImages:[]
+  },
+  {
+    id:8, name:"Tri Cycle", condition:"Excellent",
+    date:"15.04.2026", actual:59, discount:56,
+    emoji:"🚲", bg:"#e0f2f1", sold:false,
+    desc:"Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
+    images:[], viewImages:[]
+  },
 
 
 
