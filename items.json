@@ -33,9 +33,11 @@
     bg:"#fff3e0",
     sold:false,
     desc:"Comfortable 2-3 ‑seater leather sofa, in good condition, White.",
-    images:["https://image2url.com/r2/default/images/1774880064255-4609950f-edfb-4e80-bde8-5607380122a9.png"],
+    images:["https://image2url.com/r2/default/images/1774880064255-4609950f-edfb-4e80-bde8-5607380122a9.png"
+    ],
     viewImages:["https://image2url.com/r2/default/images/1774880064255-4609950f-edfb-4e80-bde8-5607380122a9.png",
-               "https://image2url.com/r2/default/images/1774880203923-cce440e7-a919-4c69-8b54-ed3a171a7247.png"]
+               "https://image2url.com/r2/default/images/1774880203923-cce440e7-a919-4c69-8b54-ed3a171a7247.png"
+    ]
   },
    {
     id:5,
@@ -48,8 +50,10 @@
     bg:"#fce4ec",
     sold:false,
     desc:" First set of 2 solid wood chairs. Sturdy build, Sold as a pair only.",
-    images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"],
-    viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"]
+    images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"
+    ],
+    viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"
+    ]
   },
    {
     id:6,
@@ -62,8 +66,10 @@
     bg:"#fce4ec",
     sold:false,
     desc:" Second set of 2 solid wood chairs. Sturdy build, Sold as a pair only.",
-    images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"],
-    viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"]
+    images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"
+    ],
+    viewImages:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"
+    ]
   },
 
   {
