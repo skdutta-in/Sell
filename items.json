@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Fridge",
+    "condition": "Excellent",
+    "date": "27.04.2026",
+    "actual": 139,
+    "discount": 135,
+    "emoji": "🧊",
+    "bg": "#d4eaf7",
+    "sold": false,
+    "desc": "Heinrich´s Fridge Freezer Combination 175 Litres, Fridge - 122L, Freezer - 53L, Quiet 39 dB.",
+    "images": [
+      "https://image2url.com/r2/default/images/1774822990895-526f03e8-923c-4dad-8c77-7d55388bf6b7.jpg"
+    ],
+    "viewImages": [
+      "https://image2url.com/r2/default/images/1774822990895-526f03e8-923c-4dad-8c77-7d55388bf6b7.jpg",
+      "https://m.media-amazon.com/images/I/71+urNX6UML._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/61JNI-60jQL._AC_SY741_.jpg",
+      "https://m.media-amazon.com/images/I/81nULrTrqFL._AC_SY741_.jpg",
+      "https://m.media-amazon.com/images/I/81UPgXj9u5L._AC_SY741_.jpg",
+      "https://m.media-amazon.com/images/I/71smPjQeeBL._AC_SY741_.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Vacuum Cleaner",
+    "condition": "Very Good",
+    "date": "28.04.2026",
+    "actual": 35,
+    "discount": 31,
+    "emoji": "🧹",
+    "bg": "#e8f5e9",
+    "sold": false,
+    "desc": "Corded vacuum cleaner with all attachments included. Powerful suction, used regularly.",
+    "images": [],
+    "viewImages": []
+  },
+  {
+    "id": 8,
+    "name": "Tri Cycle",
+    "condition": "Excellent",
+    "date": "15.04.2026",
+    "actual": 59,
+    "discount": 56,
+    "emoji": "🚲",
+    "bg": "#e0f2f1",
+    "sold": false,
+    "desc": "Kids tricycle, lightly used. Adjustable seat. Suitable for ages 2–5. Good condition.",
+    "images": [],
+    "viewImages": []
+  },
+  {
+    "id": 9,
+    "name": "Table Fan (30cm)",
+    "condition": "Excellent",
+    "date": "15.04.2026",
+    "actual": 19,
+    "discount": 17,
+    "emoji": "🌀",
+    "bg": "#e0f2f1",
+    "sold": false,
+    "desc": "Brandson 30 cm Table Fan with 3 Power Levels, Oscillating Desk Fan, Small and Quiet, Silver, black.",
+    "images": [
+      "https://m.media-amazon.com/images/I/91OiikP061L._AC_SX679_.jpg"
+    ],
+    "viewImages": [
+      "https://m.media-amazon.com/images/I/91-6rdx+fdL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/915AWg8O4XL._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/91yCO-YRCFL._AC_SL1500_.jpg"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Artificial Christmas Tree",
+    "condition": "Good",
+    "date": "15.04.2026",
+    "actual": 0,
+    "discount": 0,
+    "emoji": "🎄",
+    "bg": "#e0f2f1",
+    "sold": false,
+    "desc": "Homewit 120cm Artificial Christmas Tree, Green, Collapsible and Flame-Retardant, with Metal Stand.",
+    "images": [
+      "https://m.media-amazon.com/images/I/815Z01Fhk3L._AC_SL1500_.jpg"
+    ],
+    "viewImages": [
+      "https://m.media-amazon.com/images/I/815Z01Fhk3L._AC_SL1500_.jpg",
+      "https://m.media-amazon.com/images/I/61vE+1-TRQL._AC_SL1200_.jpg"
+    ]
+  }
+]

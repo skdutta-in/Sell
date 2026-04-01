@@ -1,0 +1,26 @@
+[
+  {
+    "id": 2,
+    "name": "Single Bed Frame",
+    "emoji": "🛏️",
+    "desc": "Sturdy metal bed frame, single size. Easy to disassemble. Details & photos being added soon."
+  },
+  {
+    "id": 1,
+    "name": "Indoor Plants",
+    "emoji": "🪴",
+    "desc": "Assorted indoor potted plants in good health. Some with decorative pots. Free or low cost - details coming soon."
+  },
+  {
+    "id": 3,
+    "name": "More Items To Be Listed",
+    "emoji": "📦",
+    "desc": "More household items being photographed and priced. Check back soon or message us on WhatsApp to stay updated!"
+  },
+  {
+    "id": 4,
+    "name": "This is 4th item",
+    "emoji": "📦",
+    "desc": "More household items being photographed and priced. Check back soon or message us on WhatsApp to stay updated!"
+  }
+]
