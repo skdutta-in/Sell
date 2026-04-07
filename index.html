@@ -500,7 +500,7 @@ footer p { margin-top:7px; line-height:1.9; }
 .marquee {
   display: flex;
   width: max-content;
-  animation: marqueeMove 30s linear infinite;
+  animation: marqueeMove 45s linear infinite;
   will-change: transform;
 }
 
@@ -1111,7 +1111,7 @@ function renderItems(){
       ? `<div class="slide-dots">${imgs.map((_,i)=>`<button class="dot${i===0?' active':''}" id="dot-${item.id}-${i}" onclick="event.stopPropagation();sSlideTo(${item.id},${i})"></button>`).join('')}</div>` : '';
 
     const cntHtml = total>1 ? `<div class="photo-count" id="pc-${item.id}">1/${total}</div>` : '';
-    const soldHtml = item.sold ? `<div class="sold-overlay"><div class="sold-stamp">SOLD</div></div>` : '';
+    const soldHtml = item.sold ? `<div class="sold-overlay"><div class="sold-stamp">Not Available</div></div>` : '';
     const condClass = item.condition==='Excellent'?'ex': item.condition==='Very Good'?'vg':'gd';
 
     const viewImgs = item.viewImages && item.viewImages.length ? item.viewImages : (hasImgs ? imgs : []);
@@ -1143,7 +1143,7 @@ function renderItems(){
         </div>
         <div class="item-actions">
           <button class="sel-btn" id="selbtn-${item.id}" onclick="event.stopPropagation();toggleItem(${item.id})" ${item.sold?'disabled':''}>
-            <span id="sellbl-${item.id}">${item.sold?'Sold':selLabel}</span>
+            <span id="sellbl-${item.id}">${item.sold?'NA':selLabel}</span>
           </button>
           ${pdfHtml}
         </div>
