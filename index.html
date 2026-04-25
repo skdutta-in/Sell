@@ -675,7 +675,7 @@ a.wa-float {
       <span>🚗 Self-pickup only</span>
       <span>🔒 Held only if prepaid</span>
       <span>⚡ First come, first served</span>
-      <span>⏰ Last collection: 28 April 2026</span>
+      <span>⏰ Last collection: 26 May 2026</span>
       <span>📍Mannheim, Germany</span>
       <span>🛗 Elevator Access Available</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
@@ -692,7 +692,7 @@ a.wa-float {
       <span>🚗 Self-pickup only</span>
       <span>🔒 Held only if prepaid</span>
       <span>⚡ First come, first served</span>
-      <span>⏰ Last collection: 28 April 2026</span>
+      <span>⏰ Last collection: 26 May 2026</span>
       <span>📍Mannheim, Germany</span>
       <span>🛗 Elevator Access Available</span>
       <span>🙋‍♂️ Please bring help for heavy items!</span>
@@ -902,7 +902,7 @@ const THRESHOLD = 201;
 const items = [
   {
     id:1, name:"Fridge", condition:"Excellent",
-    date:"27.04.2026", actual:149, discount:145,
+    date:"27.04.2026", actual:110, discount:105,
     emoji:"🧊", bg:"#d4eaf7", sold:false,
     desc:"Heinrich´s Fridge Freezer Combination 175 Litres, Fridge - 122L, Freezer - 53L, Quiet 39 dB.",
     images:["https://image2url.com/r2/default/images/1774822990895-526f03e8-923c-4dad-8c77-7d55388bf6b7.jpg"],
@@ -915,7 +915,7 @@ const items = [
   },
   {
     id:3, name:"Leather Sofa - White", condition:"Good",
-    date:"05.04.2026", actual:59, discount:56,
+    date:"05.04.2026", actual:49, discount:46,
     emoji:"🛋️", bg:"#fff3e0", sold:false,
     desc:"Comfortable 2-3 ‑seater leather sofa, in good condition, White.",
     images:["https://image2url.com/r2/default/images/1774880064255-4609950f-edfb-4e80-bde8-5607380122a9.png"],
@@ -934,7 +934,7 @@ const items = [
 
   {
     id:5, name:"2 Chair Set (A)", condition:"Good",
-    date:"07.04.2026", actual:39, discount:35,
+    date:"07.04.2026", actual:19, discount:15,
     emoji:"🪑", bg:"#fce4ec", sold:false,
     desc:" First set of 2 wood chairs. Sturdy build, Sold as a pair only.",
     images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"],
@@ -942,7 +942,7 @@ const items = [
   },
   {
     id:6, name:"2 Chair Set (B)", condition:"Good",
-    date:"07.04.2026", actual:39, discount:35,
+    date:"07.04.2026", actual:19, discount:15,
     emoji:"🪑", bg:"#fce4ec", sold:false,
     desc:"Second set of 2 wood chairs. Sturdy build, Sold as a pair only.",
     images:["https://image2url.com/r2/default/images/1774821016837-e97c400c-b6c6-4ffa-ba81-130979b1868c.png"],
@@ -969,7 +969,7 @@ const items = [
   },
   {
     id:7, name:"Panasonic Viera TX-P46GQ21", condition:"Good",
-    date:"07.04.2026", actual:49, discount:46,
+    date:"07.04.2026", actual:35, discount:31,
     emoji:"📺", bg:"#e8eaf6", sold:false,
     desc:"A 46-inch Full HD plasma TV with triple digital tuners (DVB-T/C/S2), 3× HDMI, and Viera Cast smart features.",
     images:["https://image2url.com/r2/default/images/1775509949914-b30b9823-a14b-48d5-a6fa-d0fa2adb2f68.jpeg"], 
@@ -979,7 +979,7 @@ const items = [
   
   {
     id:9, name:"JUSKYS Modern Style Bed", condition:"Good",
-    date:"24.04.2026", actual:59, discount:32,
+    date:"24.04.2026", actual:49, discount:42,
     emoji:"🛏️", bg:"#e0f2f1", sold:false,
     desc:"Elegant upholstered bed BLACK in 180 x 200 cm with LED lighting, slatted frame and headboard. Comfortable double bed for 2 persons.",
     images:["https://m.media-amazon.com/images/I/61PxDrptLnL._AC_SL1500_.jpg"],
@@ -1429,7 +1429,7 @@ renderUpcoming();
 //Countdown Script
 
 function startCountdown() {
-  const endDate = new Date("April 25, 2026 23:59:59").getTime();
+  const endDate = new Date("May 25, 2026 23:59:59").getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
